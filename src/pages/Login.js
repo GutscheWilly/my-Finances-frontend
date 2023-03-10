@@ -1,8 +1,17 @@
 import React from 'react';
+import { useState } from 'react';
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
 
 function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const signIn = () => {
+        console.log(email);
+        console.log(password);
+    }
+
     return (
         <div className="container">
             <div className="row">
@@ -19,7 +28,8 @@ function Login() {
                                                     className="form-control" 
                                                     id="exampleInputEmail"
                                                     aria-describedby="emailHelp" 
-                                                    placeholder="Enter email" 
+                                                    placeholder="Enter email"
+                                                    onChange={ ({ target: { value } }) => setEmail(value) } 
                                                 />
                                             </FormGroup>
                                             <FormGroup label="* Password:" htmlFor="exampleInputPassword">
@@ -28,8 +38,11 @@ function Login() {
                                                     className="form-control"
                                                     id="exampleInputPassword"
                                                     placeholder="Enter password"
+                                                    onChange={ ({ target: { value } }) => setPassword(value) }
                                                 />
                                             </FormGroup>
+                                            <button onClick={signIn} className="btn btn-success">Sign in</button>
+                                            <button className="btn btn-warning">Create a new account</button>
                                         </fieldset>
                                     </div>
                                 </div>
