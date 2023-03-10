@@ -1,8 +1,10 @@
+import React from 'react';
+import Login from './pages/Login';
+import 'bootswatch/dist/vapor/bootstrap.css';
+
 function App() {
   return (
-    <div>
-      Hello, world!
-    </div>
+    <Login />
   );
 }
 
