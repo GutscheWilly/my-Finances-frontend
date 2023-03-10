@@ -4,7 +4,9 @@ import 'bootswatch/dist/vapor/bootstrap.css';
 
 function App() {
   return (
-    <Login />
+    <div>
+      <Login />
+    </div>
   );
 }
 
