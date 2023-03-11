@@ -4,7 +4,7 @@ import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
 
 function RegisterUser() {
-    
+    const [name, setName] = useState('');
 
     return (
         <div className="container">
@@ -18,6 +18,7 @@ function RegisterUser() {
                                     className="form-control"
                                     id="inputName"
                                     name="name"
+                                    onChange={ (event) => setName(event.target.value) }
                                 />
                             </FormGroup>
                         </div>
