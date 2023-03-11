@@ -7,6 +7,7 @@ function RegisterUser() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     return (
         <div className="container">
@@ -39,6 +40,15 @@ function RegisterUser() {
                                     id="inputPassword"
                                     name="password"
                                     onChange={ (event) => setPassword(event.target.value) }
+                                />
+                            </FormGroup>
+                            <FormGroup label="* Confirm Password:" htmlFor="inputConfirmPassword">
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    id="inputConfirmPassword"
+                                    name="confirmPassword"
+                                    onChange={ (event) => setConfirmPassword(event.target.value) }
                                 />
                             </FormGroup>
                         </div>
