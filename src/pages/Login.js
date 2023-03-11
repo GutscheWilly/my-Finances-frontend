@@ -41,7 +41,7 @@ function Login() {
                                                     onChange={ ({ target: { value } }) => setPassword(value) }
                                                 />
                                             </FormGroup>
-                                            <div className="btn-group-vertical" style={ {position: 'relative', left: '150px'} }>
+                                            <div className="btn-group-vertical" style={ {position: 'relative', left: '155px'} }>
                                                 <button onClick={signIn} className="btn btn-success mt-3">Sign in</button>
                                                 <button className="btn btn-warning mt-3">Create a new account</button>
                                             </div>
