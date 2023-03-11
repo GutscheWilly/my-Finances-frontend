@@ -5,6 +5,7 @@ import FormGroup from '../components/FormGroup';
 
 function RegisterUser() {
     const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
 
     return (
         <div className="container">
@@ -19,6 +20,15 @@ function RegisterUser() {
                                     id="inputName"
                                     name="name"
                                     onChange={ (event) => setName(event.target.value) }
+                                />
+                            </FormGroup>
+                            <FormGroup label="* Email:" htmlFor="inputEmail">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="inputEmail"
+                                    name="email"
+                                    onChange={ (event) => setEmail(event.target.value) }
                                 />
                             </FormGroup>
                         </div>
