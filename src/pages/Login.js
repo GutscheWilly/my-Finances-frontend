@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
 
@@ -10,6 +11,12 @@ function Login() {
     const signIn = () => {
         console.log(email);
         console.log(password);
+    }
+
+    const navigate = useNavigate();
+
+    const navigateToRegisterUser = () => {
+        return navigate('/register-user');
     }
 
     return (
@@ -42,7 +49,7 @@ function Login() {
                                         </FormGroup>
                                         <div className="btn-group-vertical" style={ {position: 'relative', left: '155px'} }>
                                             <button onClick={signIn} className="btn btn-success mt-3">Sign in</button>
-                                            <button className="btn btn-warning mt-3">Create a new account</button>
+                                            <button onClick={navigateToRegisterUser} className="btn btn-warning mt-3">Register a new account</button>
                                         </div>
                                     </fieldset>
                                 </div>
