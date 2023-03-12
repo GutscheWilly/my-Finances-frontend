@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>
+    <div className="container" style={ {height: '100vh'} }>
       <RoutesApp />
     </div>
   );
