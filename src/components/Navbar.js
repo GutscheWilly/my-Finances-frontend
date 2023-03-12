@@ -1,4 +1,5 @@
 import React from 'react';
+import NavbarItem from './NavbarItem';
 
 function Navbar() {
     return (
@@ -17,20 +18,11 @@ function Navbar() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="">Home</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="">Users</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="">Launches</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="">Login</a>
-                        </li>
+                        <NavbarItem href="/" label="Home" />
+                        <NavbarItem href="/" label="Launches" />
+                        <NavbarItem href="/register-user" label="Register" />
+                        <NavbarItem href="/login" label="Login" />
                     </ul>
-
                 </div>
             </div>
         </div>
