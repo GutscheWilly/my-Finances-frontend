@@ -18,7 +18,12 @@ function Login() {
                 password: password
             }
         )
-        .then(response => console.log(response))
+        .then(response => {
+            const loggedUser = response.data;
+            const loggedUserJson = JSON.stringify(loggedUser);
+            localStorage.setItem('logged_user', loggedUserJson);
+            navigateToHome();
+        })
         .catch(error => console.log(error));
     };
 
@@ -26,6 +31,10 @@ function Login() {
 
     const navigateToRegisterUser = () => {
         return navigate('/register-user');
+    };
+
+    const navigateToHome = () => {
+        return navigate('/home');
     };
 
     return (
