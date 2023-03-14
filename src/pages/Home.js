@@ -5,7 +5,7 @@ import axios from 'axios';
 function Home() {
     const [balance, setBalance] = useState();
 
-    useEffect(async () => {
+    useEffect(() => {
         axios.get(
             'http://localhost:8080/api/users/47/balance',
         )
