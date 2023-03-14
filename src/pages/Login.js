@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
 
@@ -9,8 +11,15 @@ function Login() {
     const [password, setPassword] = useState('');
 
     const signIn = () => {
-        console.log(email);
-        console.log(password);
+        axios.post(
+            'http://localhost:8080/api/users/login',
+            {
+                email: email,
+                password: password
+            }
+        )
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
     }
 
     const navigate = useNavigate();
