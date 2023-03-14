@@ -6,8 +6,12 @@ function Home() {
     const [balance, setBalance] = useState();
 
     useEffect(() => {
+        const loggedUserJson = localStorage.getItem('logged_user');
+        const loggedUser = JSON.parse(loggedUserJson);
+        const id = loggedUser.id; 
+
         axios.get(
-            'http://localhost:8080/api/users/47/balance',
+            `http://localhost:8080/api/users/${id}/balance`
         )
         .then(response => setBalance(response.data))
         .catch(erro => console.log(erro));

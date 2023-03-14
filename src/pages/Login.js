@@ -10,6 +10,16 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
+    const navigateToRegisterUser = () => {
+        return navigate('/register-user');
+    };
+
+    const navigateToHome = () => {
+        return navigate('/home');
+    };
+
     const signIn = async () => {
         axios.post(
             'http://localhost:8080/api/users/login',
@@ -25,16 +35,6 @@ function Login() {
             navigateToHome();
         })
         .catch(error => console.log(error));
-    };
-
-    const navigate = useNavigate();
-
-    const navigateToRegisterUser = () => {
-        return navigate('/register-user');
-    };
-
-    const navigateToHome = () => {
-        return navigate('/home');
     };
 
     return (
