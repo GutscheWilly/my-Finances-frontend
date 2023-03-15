@@ -6,6 +6,8 @@ import axios from 'axios';
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
 
+import UserService from '../service/user/UserService';
+
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -20,14 +22,13 @@ function Login() {
         return navigate('/home');
     };
 
+    const userService = new UserService();
+
     const signIn = async () => {
-        axios.post(
-            'http://localhost:8080/api/users/login',
-            {
-                email: email,
-                password: password
-            }
-        )
+        userService.validateLogin({
+            email: email,
+            password: password
+        })
         .then(response => {
             const loggedUser = response.data;
             const loggedUserJson = JSON.stringify(loggedUser);
