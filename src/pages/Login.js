@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
+import LocalStorageService from '../service/local-storage/LocalStorageService';
 
 import UserService from '../service/user/UserService';
 
@@ -30,8 +31,7 @@ function Login() {
         })
         .then(response => {
             const loggedUser = response.data;
-            const loggedUserJson = JSON.stringify(loggedUser);
-            localStorage.setItem('logged_user', loggedUserJson);
+            LocalStorageService.addItem('logged_user', loggedUser);
             navigateToHome();
         })
         .catch(error => console.log(error));
