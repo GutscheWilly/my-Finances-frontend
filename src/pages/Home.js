@@ -1,18 +1,19 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+
+import UserService from '../service/user/UserService';
 
 function Home() {
     const [balance, setBalance] = useState();
+
+    const userService = new UserService();
 
     useEffect(() => {
         const loggedUserJson = localStorage.getItem('logged_user');
         const loggedUser = JSON.parse(loggedUserJson);
         const id = loggedUser.id; 
 
-        axios.get(
-            `http://localhost:8080/api/users/${id}/balance`
-        )
+        userService.getBalance(id)
         .then(response => setBalance(response.data))
         .catch(erro => console.log(erro));
     });
