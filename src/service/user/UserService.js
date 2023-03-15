@@ -9,6 +9,10 @@ class UserService extends ApiService {
     validateLogin(loginInput) {
         return this.post('/login', loginInput);
     }
+
+    getBalance(id) {
+        return this.get(`/${id}/balance`);
+    }
 }
 
 export default UserService;
