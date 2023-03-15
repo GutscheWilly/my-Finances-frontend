@@ -1,8 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
+
+import NavigateService from '../service/navigate/NavigateService';
 
 function RegisterUser() {
     const [name, setName] = useState('');
@@ -10,17 +12,13 @@ function RegisterUser() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const navigateService = NavigateService();
+
     const register = () => {
         console.log(name);
         console.log(email);
         console.log(password);
         console.log(confirmPassword);
-    }
-
-    const navigate = useNavigate();
-
-    const navigateToLogin = () => {
-        return navigate('/login');
     }
 
     return (
@@ -67,7 +65,7 @@ function RegisterUser() {
                     </div>
                     <div className="btn-group mt-5 d-grid gap-3 col-lg-2" style={ {position: 'relative', left: '450px'} }>
                         <button onClick={register} className="btn btn-success">Register</button>
-                        <button onClick={navigateToLogin} className="btn btn-danger">Cancel</button>
+                        <button onClick={navigateService.navigateToLogin} className="btn btn-danger">Cancel</button>
                     </div>
                 </div>
             </div>
