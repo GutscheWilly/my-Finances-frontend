@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 import UserService from '../service/user/UserService';
+import LocalStorageService from '../service/local-storage/LocalStorageService';
 
 function Home() {
     const [balance, setBalance] = useState();
@@ -9,8 +10,7 @@ function Home() {
     const userService = new UserService();
 
     useEffect(() => {
-        const loggedUserJson = localStorage.getItem('logged_user');
-        const loggedUser = JSON.parse(loggedUserJson);
+        const loggedUser = LocalStorageService.getItem('logged_user');
         const id = loggedUser.id; 
 
         userService.getBalance(id)
