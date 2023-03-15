@@ -1,28 +1,19 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
 import LocalStorageService from '../service/local-storage/LocalStorageService';
 
 import UserService from '../service/user/UserService';
+import NavigateService from '../service/navigate/NavigateService';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const navigate = useNavigate();
-
-    const navigateToRegisterUser = () => {
-        return navigate('/register-user');
-    };
-
-    const navigateToHome = () => {
-        return navigate('/home');
-    };
-
     const userService = new UserService();
+    const navigateService = NavigateService();
 
     const signIn = async () => {
         userService.validateLogin({
@@ -32,7 +23,7 @@ function Login() {
         .then(response => {
             const loggedUser = response.data;
             LocalStorageService.addItem('logged_user', loggedUser);
-            navigateToHome();
+            navigateService.navigateToHome();
         })
         .catch(error => console.log(error));
     };
@@ -67,7 +58,7 @@ function Login() {
                                         </FormGroup>
                                         <div className="btn-group-vertical" style={ {position: 'relative', left: '155px'} }>
                                             <button onClick={signIn} className="btn btn-success mt-3">Sign in</button>
-                                            <button onClick={navigateToRegisterUser} className="btn btn-warning mt-3">Register a new account</button>
+                                            <button onClick={navigateService.navigateToRegisterUser} className="btn btn-warning mt-3">Register a new account</button>
                                         </div>
                                     </fieldset>
                                 </div>
