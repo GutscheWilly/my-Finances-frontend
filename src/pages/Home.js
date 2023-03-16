@@ -10,15 +10,23 @@ function Home() {
 
     const userService = new UserService();
 
+    const requestAndSetBalance = async (id) => {
+        await userService.getBalance(id)
+            .then(response => {
+                const requestedBalance = response.data;
+                setBalance(requestedBalance);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
     useEffect(() => {
         const loggedUser = LocalStorageService.getItem('logged_user');
         const id = loggedUser.id; 
         const name = loggedUser.name;
 
-        userService.getBalance(id)
-        .then(response => setBalance(response.data))
-        .catch(erro => console.log(erro));
-
+        requestAndSetBalance(id);
         setUserName(name);
     });
 
