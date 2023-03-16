@@ -1,31 +1,37 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
+import { showErrorMessage } from '../components/Toastr';
+
+import LocalStorageService from '../service/local-storage/LocalStorageService';
+import UserService from '../service/user/UserService';
+import NavigateService from '../service/navigate/NavigateService';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const userService = new UserService();
+    const navigateService = NavigateService();
+
     const signIn = async () => {
-        axios.post(
-            'http://localhost:8080/api/users/login',
-            {
-                email: email,
-                password: password
-            }
-        )
-        .then(response => console.log(response))
-        .catch(error => console.log(error));
-    };
+        const loginInput = {
+            email: email,
+            password: password
+        };
 
-    const navigate = useNavigate();
-
-    const navigateToRegisterUser = () => {
-        return navigate('/register-user');
+        await userService.validateLogin(loginInput)
+            .then(response => {
+                const loggedUser = response.data;
+                LocalStorageService.addItem('logged_user', loggedUser);
+                navigateService.navigateToHome();
+            })
+            .catch(error => {
+                const errorMessage = error.response.data;
+                showErrorMessage(errorMessage);
+            });
     };
 
     return (
@@ -58,7 +64,7 @@ function Login() {
                                         </FormGroup>
                                         <div className="btn-group-vertical" style={ {position: 'relative', left: '155px'} }>
                                             <button onClick={signIn} className="btn btn-success mt-3">Sign in</button>
-                                            <button onClick={navigateToRegisterUser} className="btn btn-warning mt-3">Register a new account</button>
+                                            <button onClick={navigateService.navigateToRegisterUser} className="btn btn-warning mt-3">Register a new account</button>
                                         </div>
                                     </fieldset>
                                 </div>

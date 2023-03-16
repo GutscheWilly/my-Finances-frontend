@@ -2,8 +2,11 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import RoutesApp from './RoutesApp';
 
+import 'toastr/build/toastr.min.js'
+
 import 'bootswatch/dist/vapor/bootstrap.css';
 import './App.css';
+import 'toastr/build/toastr.css'
 
 function App() {
   return (
