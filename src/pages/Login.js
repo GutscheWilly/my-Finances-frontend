@@ -16,16 +16,20 @@ function Login() {
     const navigateService = NavigateService();
 
     const signIn = async () => {
-        userService.validateLogin({
+        const loginInput = {
             email: email,
             password: password
-        })
-        .then(response => {
-            const loggedUser = response.data;
-            LocalStorageService.addItem('logged_user', loggedUser);
-            navigateService.navigateToHome();
-        })
-        .catch(error => console.log(error));
+        };
+
+        await userService.validateLogin(loginInput)
+            .then(response => {
+                const loggedUser = response.data;
+                LocalStorageService.addItem('logged_user', loggedUser);
+                navigateService.navigateToHome();
+            })
+            .catch(error => {
+                console.log(error)
+            });
     };
 
     return (
