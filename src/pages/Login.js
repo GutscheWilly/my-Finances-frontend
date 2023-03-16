@@ -3,8 +3,9 @@ import { useState } from 'react';
 
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
-import LocalStorageService from '../service/local-storage/LocalStorageService';
+import { showErrorMessage } from '../components/Toastr';
 
+import LocalStorageService from '../service/local-storage/LocalStorageService';
 import UserService from '../service/user/UserService';
 import NavigateService from '../service/navigate/NavigateService';
 
@@ -28,7 +29,8 @@ function Login() {
                 navigateService.navigateToHome();
             })
             .catch(error => {
-                console.log(error)
+                const errorMessage = error.response.data;
+                showErrorMessage(errorMessage);
             });
     };
 
