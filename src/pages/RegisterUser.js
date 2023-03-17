@@ -6,6 +6,7 @@ import FormGroup from '../components/FormGroup';
 import { showSuccessMessage, showErrorMessage } from '../components/Toastr';
 
 import UserService from '../service/user/UserService';
+import RegisterUserService from '../service/user/RegisterUserService';
 import NavigateService from '../service/navigate/NavigateService';
 
 function RegisterUser() {
@@ -15,6 +16,7 @@ function RegisterUser() {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const userService = new UserService();
+    const registerUserService = RegisterUserService();
     const navigateService = NavigateService();
 
     const register = async () => {
@@ -33,6 +35,16 @@ function RegisterUser() {
                 const errorMessage = error.response.data;
                 showErrorMessage(errorMessage);
             });
+    };
+
+    const handleWithRegister = () => {
+        const isNameValid = registerUserService.validateName;
+        const isEmailValid = registerUserService.validateEmail;
+        const isPasswordValid = registerUserService.validatePassword;
+
+        if (isNameValid(name) && isEmailValid(email) && isPasswordValid(password, confirmPassword)) {
+            register();
+        }
     };
 
     return (
@@ -78,7 +90,7 @@ function RegisterUser() {
                         </FormGroup>
                     </div>
                     <div className="btn-group mt-5 d-grid gap-3 col-lg-2" style={ {position: 'relative', left: '450px'} }>
-                        <button onClick={register} className="btn btn-success">Register</button>
+                        <button onClick={handleWithRegister} className="btn btn-success">Register</button>
                         <button onClick={navigateService.navigateToLogin} className="btn btn-danger">Cancel</button>
                     </div>
                 </div>
