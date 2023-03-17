@@ -3,7 +3,9 @@ import { useState } from 'react';
 
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
+import { showSuccessMessage, showErrorMessage } from '../components/Toastr';
 
+import UserService from '../service/user/UserService';
 import NavigateService from '../service/navigate/NavigateService';
 
 function RegisterUser() {
@@ -12,14 +14,26 @@ function RegisterUser() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const userService = new UserService();
     const navigateService = NavigateService();
 
-    const register = () => {
-        console.log(name);
-        console.log(email);
-        console.log(password);
-        console.log(confirmPassword);
-    }
+    const register = async () => {
+        const userData = {
+            name: name,
+            email: email,
+            password: password
+        };
+
+        await userService.registerUser(userData)
+            .then(() => {
+                navigateService.navigateToLogin();
+                showSuccessMessage('Registration successful!');
+            })
+            .catch(error => {
+                const errorMessage = error.response.data;
+                showErrorMessage(errorMessage);
+            });
+    };
 
     return (
         <Card title="Register User">
