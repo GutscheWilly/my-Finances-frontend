@@ -38,12 +38,24 @@ function RegisterUser() {
     };
 
     const handleWithRegister = () => {
-        const isNameValid = registerUserService.validateName;
-        const isEmailValid = registerUserService.validateEmail;
-        const isPasswordValid = registerUserService.validatePassword;
+        function validateUserData() {
+            const {
+                validateName,
+                validateEmail,
+                validatePassword
+            } = registerUserService;
 
-        if (isNameValid(name) && isEmailValid(email) && isPasswordValid(password, confirmPassword)) {
+            validateName(name);
+            validateEmail(email);
+            validatePassword(password, confirmPassword);
+        }
+
+        try {
+            validateUserData();
             register();
+        }
+        catch (error) {
+            showErrorMessage(error);
         }
     };
 
