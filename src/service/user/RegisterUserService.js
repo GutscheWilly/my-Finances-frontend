@@ -59,12 +59,14 @@ function RegisterUserService() {
         }
     };
 
-    return {
-        validateName,
-        validateEmail,
-        validatePassword,
-        validateConfirmPassword
+    const validateUserData = (name, email, password, confirmPassword) => {
+        validateName(name);
+        validateEmail(email);
+        validatePassword(password);
+        validateConfirmPassword(password, confirmPassword);
     };
+
+    return { validateUserData };
 }
 
 export default RegisterUserService;
