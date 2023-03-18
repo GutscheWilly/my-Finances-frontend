@@ -32,7 +32,7 @@ function RegisterUserService() {
         }
     };
 
-    const validatePassword = (password, confirmPassword) => {
+    const validatePassword = (password) => {
         const passwordValidator = createPasswordValidator();
 
         function isPasswordValid() {
@@ -47,9 +47,11 @@ function RegisterUserService() {
         if (isPasswordValid() === false) {
             throw getPasswordErrorMessage();
         }
+    };
 
+    const validateConfirmPassword = (password, confirmPassword) => {
         function checkConfirmPassword() {
-            return confirmPassword === password;
+            return password === confirmPassword;
         }
 
         if (checkConfirmPassword() === false) {
@@ -60,7 +62,8 @@ function RegisterUserService() {
     return {
         validateName,
         validateEmail,
-        validatePassword
+        validatePassword,
+        validateConfirmPassword
     };
 }
 
