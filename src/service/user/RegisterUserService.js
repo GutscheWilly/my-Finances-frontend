@@ -17,6 +17,12 @@ const createPasswordValidator = () => {
 
 function RegisterUserService() {
     const validateName = (name) => {
+        const isNameEmpty = name.trim() === '';
+
+        if (isNameEmpty) {
+            throw 'Enter a name!';
+        }
+
         const isNameValid = name.length > 2;
 
         if (isNameValid === false) {
