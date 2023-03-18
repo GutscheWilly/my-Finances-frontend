@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
-import { showSuccessMessage, showErrorMessage } from '../components/Toastr';
+import { showSuccessMessage, showErrorMessage, showWarningMessage } from '../components/Toastr';
 
 import UserService from '../service/user/UserService';
 import RegisterUserService from '../service/user/RegisterUserService';
@@ -42,8 +42,8 @@ function RegisterUser() {
             registerUserService.validateUserData(name, email, password, confirmPassword);
             register();
         }
-        catch (error) {
-            showErrorMessage(error);
+        catch (warningMessage) {
+            showWarningMessage(warningMessage);
         }
     };
 
