@@ -1,6 +1,5 @@
 import EmailValidator from 'email-validator';
 import PasswordValidator from 'password-validator';
-import { showErrorMessage } from '../../components/Toastr';
 
 const createPasswordValidator = () => {
     const passwordValidator = new PasswordValidator();
@@ -10,8 +9,8 @@ const createPasswordValidator = () => {
         .is().max(100, 'Password should have a maximum length of 100 characters!')                                  
         .has().uppercase(1, 'Password should have a minimum of 1 uppercase letter!')                              
         .has().lowercase(1, 'Password should have a minimum of 1 lowercase letter!')                              
-        .has().digits(2, 'Password should have a minimum of 2 digits')                                
-        .has().not().spaces(0, 'Password should not have spaces');
+        .has().digits(2, 'Password should have a minimum of 2 digits!')                                
+        .has().not().spaces(0, 'Password should not have spaces!');
         
     return passwordValidator;
 };
@@ -21,20 +20,16 @@ function RegisterUserService() {
         const isNameValid = name.length > 2;
 
         if (isNameValid === false) {
-            showErrorMessage('Name should have a minimum 3 characters!');
-            return false;
+            throw 'Name should have a minimum 3 characters!';
         }
-        return true;
     };
 
     const validateEmail = (email) => {
         const isEmailValid = EmailValidator.validate(email);
 
         if (isEmailValid === false) {
-            showErrorMessage('Enter a valid email!');
-            return false;
+            throw 'Enter a valid email!';
         }
-        return true;
     };
 
     const validatePassword = (password, confirmPassword) => {
@@ -50,9 +45,7 @@ function RegisterUserService() {
         }
 
         if (isPasswordValid() === false) {
-            const passwordErrorMessage = getPasswordErrorMessage();
-            showErrorMessage(passwordErrorMessage);
-            return false;
+            throw getPasswordErrorMessage();
         }
 
         function checkConfirmPassword() {
@@ -60,10 +53,8 @@ function RegisterUserService() {
         }
 
         if (checkConfirmPassword() === false) {
-            showErrorMessage('Please, make sure your password match!');
-            return false;
+            throw 'Please, make sure your password match!';
         }
-        return true;
     };
 
     return {
