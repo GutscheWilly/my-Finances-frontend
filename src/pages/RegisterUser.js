@@ -38,20 +38,8 @@ function RegisterUser() {
     };
 
     const handleWithRegister = () => {
-        function validateUserData() {
-            const {
-                validateName,
-                validateEmail,
-                validatePassword
-            } = registerUserService;
-
-            validateName(name);
-            validateEmail(email);
-            validatePassword(password, confirmPassword);
-        }
-
         try {
-            validateUserData();
+            registerUserService.validateUserData(name, email, password, confirmPassword);
             register();
         }
         catch (error) {
