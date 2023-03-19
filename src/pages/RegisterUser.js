@@ -3,7 +3,10 @@ import { useState } from 'react';
 
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
+import { showSuccessMessage, showErrorMessage, showWarningMessage } from '../components/Toastr';
 
+import UserService from '../service/user/UserService';
+import RegisterUserService from '../service/user/RegisterUserService';
 import NavigateService from '../service/navigate/NavigateService';
 
 function RegisterUser() {
@@ -12,14 +15,37 @@ function RegisterUser() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const userService = new UserService();
+    const registerUserService = RegisterUserService();
     const navigateService = NavigateService();
 
-    const register = () => {
-        console.log(name);
-        console.log(email);
-        console.log(password);
-        console.log(confirmPassword);
-    }
+    const register = async () => {
+        const userData = {
+            name: name,
+            email: email,
+            password: password
+        };
+
+        await userService.registerUser(userData)
+            .then(() => {
+                navigateService.navigateToLogin();
+                showSuccessMessage('Registration successful!');
+            })
+            .catch(error => {
+                const errorMessage = error.response.data;
+                showErrorMessage(errorMessage);
+            });
+    };
+
+    const handleWithRegister = () => {
+        try {
+            registerUserService.validateUserData(name, email, password, confirmPassword);
+            register();
+        }
+        catch (warningMessage) {
+            showWarningMessage(warningMessage);
+        }
+    };
 
     return (
         <Card title="Register User">
@@ -64,7 +90,7 @@ function RegisterUser() {
                         </FormGroup>
                     </div>
                     <div className="btn-group mt-5 d-grid gap-3 col-lg-2" style={ {position: 'relative', left: '450px'} }>
-                        <button onClick={register} className="btn btn-success">Register</button>
+                        <button onClick={handleWithRegister} className="btn btn-success">Register</button>
                         <button onClick={navigateService.navigateToLogin} className="btn btn-danger">Cancel</button>
                     </div>
                 </div>
