@@ -4,8 +4,11 @@ function MenuOption(props) {
     const { optionList } = props;
 
     const options = optionList.map(option => {
+        const label = option.label;
+        const value = option.value;
+
         return (
-            <option value={option.value}>{option.label}</option>
+            <option key={label} value={value}>{label}</option>
         );
     });
 
