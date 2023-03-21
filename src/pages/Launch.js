@@ -46,6 +46,11 @@ function Launch() {
                         <FormGroup label="Type:" htmlFor="inputType">
                             <MenuOption className="form-control" optionList={launchTypesOptionList} />
                         </FormGroup>
+
+                        <div className="mt-4">
+                            <button type="button" className="btn btn-outline-success">Search</button>
+                            <button type="button" className="btn btn-outline-light">Add Launch</button>
+                        </div>
                     </div>
                 </div>
             </div>
