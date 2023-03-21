@@ -20,6 +20,12 @@ const monthsOptionList = [
     {label: 'December',  value: 12}
 ];
 
+const launchTypesOptionList = [
+    {label: 'Select...', value: ''},
+    {label: 'Revenue',   value: 'REVENUE'},
+    {label: 'Expense',   value: 'EXPENSE'}
+];
+
 function Launch() {
     return (
         <Card title="Search Launch">
@@ -35,7 +41,10 @@ function Launch() {
                             />
                         </FormGroup>
                         <FormGroup label="Month:" htmlFor="inputMonth">
-                            <MenuOption className="form-control" optionList={monthsOptionList}/>
+                            <MenuOption className="form-control" optionList={monthsOptionList} />
+                        </FormGroup>
+                        <FormGroup label="Type:" htmlFor="inputType">
+                            <MenuOption className="form-control" optionList={launchTypesOptionList} />
                         </FormGroup>
                     </div>
                 </div>
