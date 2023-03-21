@@ -1,8 +1,9 @@
 import React from 'react';
 
-import Card from '../components/Card';
-import FormGroup from '../components/FormGroup';
-import MenuOption from '../components/MenuOption';
+import Card from '../../components/Card';
+import FormGroup from '../../components/FormGroup';
+import MenuOption from '../../components/MenuOption';
+import TableLaunch from './TableLaunch';
 
 const monthsOptionList = [
     {label: 'Select...', value: ''},
@@ -51,6 +52,14 @@ function Launch() {
                             <button type="button" className="btn btn-outline-success">Search</button>
                             <button type="button" className="btn btn-outline-light">Add Launch</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="bs-component mt-4">  
+                        <TableLaunch />
                     </div>
                 </div>
             </div>

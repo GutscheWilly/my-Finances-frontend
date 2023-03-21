@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from '../pages/Login';
 import RegisterUser from '../pages/RegisterUser';
 import Home from '../pages/Home';
-import Launch from '../pages/Launch';
+import Launch from '../pages/launch/Launch';
 
 function RoutesApp() {
     return (
