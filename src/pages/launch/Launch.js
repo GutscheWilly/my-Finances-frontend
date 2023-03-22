@@ -27,6 +27,17 @@ const launchTypesOptionList = [
     {label: 'Expense',   value: 'EXPENSE'}
 ];
 
+const launches = [
+    {
+        id: 2,
+        description: 'oi',
+        value: 1000,
+        type: 'REVENUE',
+        month: 8,
+        status: 'CONFIRMED'
+    }
+];
+
 function Launch() {
     return (
         <Card title="Search Launch">
@@ -42,10 +53,10 @@ function Launch() {
                             />
                         </FormGroup>
                         <FormGroup label="Month:" htmlFor="inputMonth">
-                            <MenuOption className="form-control" optionList={monthsOptionList} />
+                            <MenuOption className="form-control" options={monthsOptionList} />
                         </FormGroup>
                         <FormGroup label="Type:" htmlFor="inputType">
-                            <MenuOption className="form-control" optionList={launchTypesOptionList} />
+                            <MenuOption className="form-control" options={launchTypesOptionList} />
                         </FormGroup>
 
                         <div className="mt-4">
@@ -59,7 +70,7 @@ function Launch() {
             <div className="row">
                 <div className="col-md-12">
                     <div className="bs-component mt-4">  
-                        <TableLaunch />
+                        <TableLaunch launchList={launches} />
                     </div>
                 </div>
             </div>
