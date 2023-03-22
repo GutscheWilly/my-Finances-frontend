@@ -6,6 +6,9 @@ import FormGroup from '../../components/FormGroup';
 import MenuOption from '../../components/MenuOption';
 import TableLaunch from './TableLaunch';
 
+import LaunchService from '../../service/launch/LaunchService';
+import LocalStorageService from '../../service/local-storage/LocalStorageService';
+
 const monthsOptionList = [
     {label: 'Select...', value: ''},
     {label: 'January',   value: 1},
@@ -43,11 +46,25 @@ function Launch() {
     const [year, setYear] = useState();
     const [month, setMonth] = useState();
     const [type, setType] = useState();
+    const [launchList, setLaunchList] = useState();
 
-    const search = () => {  
-        console.log(year);
-        console.log(month);
-        console.log(type);
+    const launchService  = new LaunchService();
+
+    const search = async () => {  
+        const filter = {
+            userId: LocalStorageService.getItem('logged_user').id,
+            year: year,
+            month: month,
+            type: type
+        };
+
+        await launchService.searchLaunches(filter)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     return (
