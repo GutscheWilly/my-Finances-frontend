@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 
 import Card from '../../components/Card';
 import FormGroup from '../../components/FormGroup';
@@ -39,6 +40,16 @@ const launches = [
 ];
 
 function Launch() {
+    const [year, setYear] = useState();
+    const [month, setMonth] = useState();
+    const [type, setType] = useState();
+
+    const search = () => {  
+        console.log(year);
+        console.log(month);
+        console.log(type);
+    };
+
     return (
         <Card title="Search Launch">
             <div className="row">
@@ -50,17 +61,28 @@ function Launch() {
                                 className="form-control"
                                 id="inputYear"
                                 placeholder="Enter year"
+                                onChange={ event => setYear(event.target.value) }
                             />
                         </FormGroup>
                         <FormGroup label="Month:" htmlFor="inputMonth">
-                            <MenuOption className="form-control" options={monthsOptionList} />
+                            <MenuOption
+                                id="inputMonth"
+                                className="form-control" 
+                                options={monthsOptionList}
+                                onChange={ event => setMonth(event.target.value)}
+                            />
                         </FormGroup>
                         <FormGroup label="Type:" htmlFor="inputType">
-                            <MenuOption className="form-control" options={launchTypesOptionList} />
+                            <MenuOption 
+                                id="inputType"
+                                className="form-control" 
+                                options={launchTypesOptionList} 
+                                onChange={ event => setType(event.target.value) }
+                            />
                         </FormGroup>
 
                         <div className="mt-4">
-                            <button type="button" className="btn btn-outline-success">Search</button>
+                            <button onClick={search} type="button" className="btn btn-outline-success">Search</button>
                             <button type="button" className="btn btn-outline-light">Add Launch</button>
                         </div>
                     </div>
