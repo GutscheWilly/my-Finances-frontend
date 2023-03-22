@@ -22,8 +22,8 @@ class ApiService {
         return httpClient.put(this.addPath(url), object);
     }
 
-    get(url) {
-        return httpClient.get(this.addPath(url));
+    get(url, object) {
+        return httpClient.get(this.addPath(url), object);
     }
 
     delete(url) {
