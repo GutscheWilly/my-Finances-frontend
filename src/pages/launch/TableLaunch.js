@@ -1,6 +1,29 @@
 import React from 'react';
 
-function TableLaunch() {
+function TableLaunch(props) {
+    const { launchList } = props;
+
+    const launches = launchList.map(launch => {
+        const {
+            id,
+            description,
+            value,
+            type,
+            month,
+            status
+        } = launch;
+
+        return (
+            <tr key={id}>
+                <td>{description}</td>
+                <td>${value}</td>
+                <td>{type}</td>
+                <td>{month}</td>
+                <td>{status}</td>
+            </tr>
+        );
+    });
+
     return (
         <table className="table table-hover">
             <thead className="table-primary">
@@ -14,13 +37,7 @@ function TableLaunch() {
             </thead>
 
             <tbody className="table-secondary">
-                <tr>
-                    <td>Churras</td>
-                    <td>$ 1000</td>
-                    <td>Revenue</td>
-                    <td>July</td>
-                    <td>Confirmed</td>
-                </tr>
+                {launches}
             </tbody>
         </table>
     );
