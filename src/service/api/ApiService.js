@@ -23,7 +23,7 @@ class ApiService {
     }
 
     get(url, object) {
-        return httpClient.get(this.addPath(url), object);
+        return httpClient.get(this.addPath(url), { params: object });
     }
 
     delete(url) {
