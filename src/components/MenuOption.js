@@ -1,20 +1,22 @@
 import React from 'react';
 
 function MenuOption(props) {
-    const { optionList } = props;
+    const { options } = props;
 
-    const options = optionList.map(option => {
-        const label = option.label;
-        const value = option.value;
+    const optionList = options.map(option => {
+        const {
+            label,
+            value
+        } = option;
 
         return (
-            <option key={label} value={value}>{label}</option>
+            <option key={value} value={value}>{label}</option>
         );
     });
 
     return (
         <select {...props}>
-            {options}
+            {optionList}
         </select>
     );
 }
