@@ -1,10 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Card from '../../components/Card';
 import FormGroup from '../../components/FormGroup';
 import MenuOption from '../../components/MenuOption';
 import TableLaunch from './TableLaunch';
+import { showWarningMessage, showErrorMessage } from '../../components/Toastr';
 
 import LaunchService from '../../service/launch/LaunchService';
 import LocalStorageService from '../../service/local-storage/LocalStorageService';
@@ -31,28 +32,18 @@ const launchTypesOptionList = [
     {label: 'Expense',   value: 'EXPENSE'}
 ];
 
-const launches = [
-    {
-        id: 2,
-        description: 'oi',
-        value: 1000,
-        type: 'REVENUE',
-        month: 8,
-        status: 'CONFIRMED'
-    }
-];
-
 function Launch() {
+    const userId = LocalStorageService.getItem('logged_user').id;
     const [year, setYear] = useState();
     const [month, setMonth] = useState();
     const [type, setType] = useState();
-    const [launchList, setLaunchList] = useState();
+    const [launchList, setLaunchList] = useState([]);
 
-    const launchService  = new LaunchService();
+    const launchService = new LaunchService();
 
-    const search = async () => {  
+    const searchLaunches = async () => {  
         const filter = {
-            userId: LocalStorageService.getItem('logged_user').id,
+            userId: userId,
             year: year,
             month: month,
             type: type
@@ -60,12 +51,22 @@ function Launch() {
 
         await launchService.searchLaunches(filter)
             .then(response => {
-                console.log(response);
+                const foundLaunches = response.data;
+                setLaunchList(foundLaunches);
+
+                if (foundLaunches.length === 0) {
+                    showWarningMessage('No launch found!');
+                }
             })
             .catch(error => {
-                console.log(error);
+                const errorMessage = error.data;
+                showErrorMessage(errorMessage);
             });
     };
+
+    useEffect(() => {
+        searchLaunches();
+    }, []);
 
     return (
         <Card title="Search Launch">
@@ -86,7 +87,7 @@ function Launch() {
                                 id="inputMonth"
                                 className="form-control" 
                                 options={monthsOptionList}
-                                onChange={ event => setMonth(event.target.value)}
+                                onChange={ event => setMonth(event.target.value) }
                             />
                         </FormGroup>
                         <FormGroup label="Type:" htmlFor="inputType">
@@ -99,7 +100,7 @@ function Launch() {
                         </FormGroup>
 
                         <div className="mt-4">
-                            <button onClick={search} type="button" className="btn btn-outline-success">Search</button>
+                            <button onClick={searchLaunches} type="button" className="btn btn-outline-success">Search</button>
                             <button type="button" className="btn btn-outline-light">Add Launch</button>
                         </div>
                     </div>
@@ -109,7 +110,7 @@ function Launch() {
             <div className="row">
                 <div className="col-md-12">
                     <div className="bs-component mt-4">  
-                        <TableLaunch launchList={launches} />
+                        <TableLaunch launchList={launchList} />
                     </div>
                 </div>
             </div>
