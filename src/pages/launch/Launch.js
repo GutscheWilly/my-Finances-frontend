@@ -8,29 +8,8 @@ import TableLaunch from './TableLaunch';
 import { showWarningMessage, showErrorMessage } from '../../components/Toastr';
 
 import LaunchService from '../../service/launch/LaunchService';
+import { monthsOptionList, launchTypesOptionList } from '../../service/launch/LaunchService';
 import LocalStorageService from '../../service/local-storage/LocalStorageService';
-
-const monthsOptionList = [
-    {label: 'Select...', value: ''},
-    {label: 'January',   value: 1},
-    {label: 'February',  value: 2},
-    {label: 'March',     value: 3},
-    {label: 'April',     value: 4},
-    {label: 'May',       value: 5},
-    {label: 'June',      value: 6},
-    {label: 'July',      value: 7},
-    {label: 'August',    value: 8},
-    {label: 'September', value: 9},
-    {label: 'October',   value: 10},
-    {label: 'November',  value: 11},
-    {label: 'December',  value: 12}
-];
-
-const launchTypesOptionList = [
-    {label: 'Select...', value: ''},
-    {label: 'Revenue',   value: 'REVENUE'},
-    {label: 'Expense',   value: 'EXPENSE'}
-];
 
 function Launch() {
     const userId = LocalStorageService.getItem('logged_user').id;
