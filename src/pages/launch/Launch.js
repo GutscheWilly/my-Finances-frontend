@@ -14,6 +14,7 @@ import LocalStorageService from '../../service/local-storage/LocalStorageService
 function Launch() {
     const userId = LocalStorageService.getItem('logged_user').id;
     const [year, setYear] = useState();
+    const [description, setDescription] = useState();
     const [month, setMonth] = useState();
     const [type, setType] = useState();
     const [launchList, setLaunchList] = useState([]);
@@ -24,6 +25,7 @@ function Launch() {
         const filter = {
             userId: userId,
             year: year,
+            description: description,
             month: month,
             type: type
         };
@@ -59,6 +61,15 @@ function Launch() {
                                 id="inputYear"
                                 placeholder="Enter year"
                                 onChange={ event => setYear(event.target.value) }
+                            />
+                        </FormGroup>
+                        <FormGroup label="Description:" htmlFor="inputDescription">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="inputDescription"
+                                placeholder="Enter description"
+                                onChange={ event => setDescription(event.target.value) }
                             />
                         </FormGroup>
                         <FormGroup label="Month:" htmlFor="inputMonth">
