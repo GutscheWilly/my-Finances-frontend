@@ -26,7 +26,7 @@ function TableLaunch(props) {
 
     return (
         <table className="table table-hover">
-            <thead className="table-primary">
+            <thead className="table-secondary">
                 <tr>
                     <th>Description</th>
                     <th>Value</th>
@@ -36,7 +36,7 @@ function TableLaunch(props) {
                 </tr>
             </thead>
 
-            <tbody className="table-secondary">
+            <tbody className="table-primary">
                 {launches}
             </tbody>
         </table>
