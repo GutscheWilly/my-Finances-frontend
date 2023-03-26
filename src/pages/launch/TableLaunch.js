@@ -1,4 +1,5 @@
 import React from 'react';
+import currencyFormatter from 'currency-formatter';
 
 function TableLaunch(props) {
     const { launchList } = props;
@@ -16,7 +17,7 @@ function TableLaunch(props) {
         return (
             <tr key={id}>
                 <td>{description}</td>
-                <td>${value}</td>
+                <td>{currencyFormatter.format(value, { locale: 'en-US' })}</td>
                 <td>{type}</td>
                 <td>{month}</td>
                 <td>{status}</td>
