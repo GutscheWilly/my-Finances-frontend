@@ -31,6 +31,10 @@ class LaunchService extends ApiService {
     searchLaunches(filter) {
         return this.get('', filter);
     }
+
+    deleteLaunch(id) {
+        return this.delete(`/${id}`);
+    }
 }
 
 export default LaunchService;
