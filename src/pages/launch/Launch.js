@@ -5,7 +5,7 @@ import Card from '../../components/Card';
 import FormGroup from '../../components/FormGroup';
 import MenuOption from '../../components/MenuOption';
 import TableLaunch from './TableLaunch';
-import { showWarningMessage, showErrorMessage } from '../../components/Toastr';
+import { showWarningMessage, showErrorMessage, showSuccessMessage } from '../../components/Toastr';
 
 import LaunchService from '../../service/launch/LaunchService';
 import { monthsOptionList, launchTypesOptionList } from '../../service/launch/LaunchService';
@@ -38,6 +38,18 @@ function Launch() {
                 if (foundLaunches.length === 0) {
                     showWarningMessage('No launch found!');
                 }
+            })
+            .catch(error => {
+                const errorMessage = error.data;
+                showErrorMessage(errorMessage);
+            });
+    };
+
+    const deleteLaunch = async (id) => {
+        await launchService.deleteLaunch(id)
+            .then(() => {
+                searchLaunches();
+                showSuccessMessage('Launch Deleted!');
             })
             .catch(error => {
                 const errorMessage = error.data;
@@ -100,7 +112,7 @@ function Launch() {
             <div className="row">
                 <div className="col-md-12">
                     <div className="bs-component mt-4">  
-                        <TableLaunch launchList={launchList} />
+                        <TableLaunch launchList={launchList} deleteAction={deleteLaunch} />
                     </div>
                 </div>
             </div>
