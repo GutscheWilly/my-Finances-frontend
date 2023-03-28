@@ -21,6 +21,10 @@ function TableLaunch(props) {
                 <td>{type}</td>
                 <td>{month}</td>
                 <td>{status}</td>
+                <td>
+                    <button type="button" className="btn btn-dark">Edit</button>
+                    <button type="button" className="btn btn-danger">Delete</button>
+                </td>
             </tr>
         );
     });
@@ -34,6 +38,7 @@ function TableLaunch(props) {
                     <th>Type</th>
                     <th>Month</th>
                     <th>Status</th>
+                    <th>Config</th>
                 </tr>
             </thead>
 
