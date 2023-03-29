@@ -7,6 +7,8 @@ import MenuOption from '../../components/MenuOption';
 import TableLaunch from './TableLaunch';
 import { showWarningMessage, showErrorMessage, showSuccessMessage } from '../../components/Toastr';
 
+import { Dialog } from 'primereact/dialog';
+
 import LaunchService from '../../service/launch/LaunchService';
 import { monthsOptionList, launchTypesOptionList } from '../../service/launch/LaunchService';
 import LocalStorageService from '../../service/local-storage/LocalStorageService';
@@ -18,6 +20,7 @@ function Launch() {
     const [month, setMonth] = useState();
     const [type, setType] = useState();
     const [launchList, setLaunchList] = useState([]);
+    const [showConfirmDialog, setConfirmDialog] = useState(false);
 
     const launchService = new LaunchService();
 
@@ -46,6 +49,8 @@ function Launch() {
     };
 
     const deleteLaunch = async (id) => {
+        setConfirmDialog(true);
+        
         await launchService.deleteLaunch(id)
             .then(() => {
                 searchLaunches();
@@ -115,6 +120,19 @@ function Launch() {
                         <TableLaunch launchList={launchList} deleteAction={deleteLaunch} />
                     </div>
                 </div>
+            </div>
+
+            <div>
+                <Dialog 
+                    header="Header" 
+                    visible={showConfirmDialog} 
+                    style={{ width: '50vw' }} 
+                    onHide={() => setConfirmDialog(false)}
+                >
+                    <p className="m-0">
+                        TEST
+                    </p>
+                </Dialog>
             </div>
         </Card>
     );
