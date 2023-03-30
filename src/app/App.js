@@ -8,7 +8,7 @@ import 'bootswatch/dist/vapor/bootstrap.css';
 import './App.css';
 import 'toastr/build/toastr.css'
 
-import "primereact/resources/themes/bootstrap4-dark-purple/theme.css";     
+import "primereact/resources/themes/arya-purple/theme.css";     
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
