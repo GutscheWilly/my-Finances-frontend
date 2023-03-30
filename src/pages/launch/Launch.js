@@ -5,7 +5,10 @@ import Card from '../../components/Card';
 import FormGroup from '../../components/FormGroup';
 import MenuOption from '../../components/MenuOption';
 import TableLaunch from './TableLaunch';
-import { showWarningMessage, showErrorMessage } from '../../components/Toastr';
+import { showWarningMessage, showErrorMessage, showSuccessMessage } from '../../components/Toastr';
+
+import { Dialog } from 'primereact/dialog';
+import { Button } from 'primereact/button'
 
 import LaunchService from '../../service/launch/LaunchService';
 import { monthsOptionList, launchTypesOptionList } from '../../service/launch/LaunchService';
@@ -13,11 +16,15 @@ import LocalStorageService from '../../service/local-storage/LocalStorageService
 
 function Launch() {
     const userId = LocalStorageService.getItem('logged_user').id;
+    
     const [year, setYear] = useState();
     const [description, setDescription] = useState();
     const [month, setMonth] = useState();
     const [type, setType] = useState();
     const [launchList, setLaunchList] = useState([]);
+
+    const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+    const [launchToBeDelete, setLaunchToBeDelete] = useState({});
 
     const launchService = new LaunchService();
 
@@ -33,17 +40,51 @@ function Launch() {
         await launchService.searchLaunches(filter)
             .then(response => {
                 const foundLaunches = response.data;
-                setLaunchList(foundLaunches);
 
                 if (foundLaunches.length === 0) {
                     showWarningMessage('No launch found!');
                 }
+
+                setLaunchList(foundLaunches);
             })
             .catch(error => {
                 const errorMessage = error.data;
                 showErrorMessage(errorMessage);
             });
     };
+
+    const deleteLaunch = async () => {
+        const id = launchToBeDelete.id;
+
+        await launchService.deleteLaunch(id)
+            .then(() => {
+                searchLaunches();
+                showSuccessMessage('Launch Deleted!');
+            })
+            .catch(error => {
+                const errorMessage = error.data;
+                showErrorMessage(errorMessage);
+            });
+
+        resetConfirmDialog();
+    };
+
+    const openConfirmDialog = (launch) => {
+        setShowConfirmDialog(true);
+        setLaunchToBeDelete(launch);
+    };
+
+    const resetConfirmDialog = () => {
+        setShowConfirmDialog(false);
+        setLaunchToBeDelete({});
+    };
+
+    const confirmDialogFooter = (
+        <div>
+            <Button onClick={deleteLaunch} icon="pi pi-check" label="Confirm"></Button>
+            <Button onClick={resetConfirmDialog} icon="pi pi-times" label="Cancel"></Button>  
+        </div>
+    );
 
     useEffect(() => {
         searchLaunches();
@@ -100,10 +141,22 @@ function Launch() {
             <div className="row">
                 <div className="col-md-12">
                     <div className="bs-component mt-4">  
-                        <TableLaunch launchList={launchList} />
+                        <TableLaunch launchList={launchList} deleteAction={openConfirmDialog} />
                     </div>
                 </div>
             </div>
+
+            <Dialog 
+                header="Delete Confirmation" 
+                visible={showConfirmDialog} 
+                footer={confirmDialogFooter}
+                style={{ width: '50vw' }} 
+                onHide={() => setShowConfirmDialog(false)}
+            >
+                <p className="m-0">
+                    Do you really want to delete this launch?
+                </p>
+            </Dialog>
         </Card>
     );
 }

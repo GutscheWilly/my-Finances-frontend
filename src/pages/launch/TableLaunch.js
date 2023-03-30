@@ -2,7 +2,10 @@ import React from 'react';
 import currencyFormatter from 'currency-formatter';
 
 function TableLaunch(props) {
-    const { launchList } = props;
+    const { 
+        launchList,
+        deleteAction
+    } = props;
 
     const launches = launchList.map(launch => {
         const {
@@ -21,6 +24,10 @@ function TableLaunch(props) {
                 <td>{type}</td>
                 <td>{month}</td>
                 <td>{status}</td>
+                <td>
+                    <button type="button" className="btn btn-dark">Edit</button>
+                    <button type="button" className="btn btn-danger" onClick={ () => deleteAction(launch) }>Delete</button>
+                </td>
             </tr>
         );
     });
@@ -34,6 +41,7 @@ function TableLaunch(props) {
                     <th>Type</th>
                     <th>Month</th>
                     <th>Status</th>
+                    <th>Config</th>
                 </tr>
             </thead>
 
