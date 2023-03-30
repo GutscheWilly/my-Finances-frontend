@@ -26,7 +26,7 @@ function TableLaunch(props) {
                 <td>{status}</td>
                 <td>
                     <button type="button" className="btn btn-dark">Edit</button>
-                    <button type="button" className="btn btn-danger" onClick={() => deleteAction(id)}>Delete</button>
+                    <button type="button" className="btn btn-danger" onClick={ () => deleteAction(launch) }>Delete</button>
                 </td>
             </tr>
         );
