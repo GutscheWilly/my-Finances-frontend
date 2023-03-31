@@ -17,20 +17,20 @@ function RegisterLaunch() {
         <Card title="Register Launch">
             <div className="row col-md-13">
                 <FormGroup htmlFor="inputDescription" label="* Description:">
-                    <input id="inputDescription" type="text" className="form-control" />
+                    <input onChange={ event => setDescription(event.target.value) } id="inputDescription" type="text" className="form-control" />
                 </FormGroup>
             </div>
 
             <div className="row">
                 <div className="col-md-6">
                     <FormGroup htmlFor="inputYear" label="* Year:">
-                        <input id="inputYear" type="text" className="form-control" />
+                        <input onChange={ event => setYear(event.target.value) } id="inputYear" type="text" className="form-control" />
                     </FormGroup>
                 </div>
 
                 <div className="col-md-6">
                     <FormGroup htmlFor="inputMonth" label="* Month:">
-                        <MenuOption id="inputMonth" options={monthsOptionList} className="form-control" />
+                        <MenuOption onChange={ event => setMonth(event.target.value) } id="inputMonth" options={monthsOptionList} className="form-control" />
                     </FormGroup>
                 </div>
             </div>
@@ -38,13 +38,13 @@ function RegisterLaunch() {
             <div className="row">
                 <div className="col-md-4">
                     <FormGroup htmlFor="inputValue" label="* Value:">
-                        <input id="inputValue" type="text" className="form-control" />
+                        <input onChange={ event => setValue(event.target.value) } id="inputValue" type="text" className="form-control" />
                     </FormGroup>
                 </div>
 
                 <div className="col-md-4">
                     <FormGroup htmlFor="inputType" label="* Type:">
-                        <MenuOption id="inputType" options={launchTypesOptionList} className="form-control" />
+                        <MenuOption onChange={ event => setType(event.target.value) } id="inputType" options={launchTypesOptionList} className="form-control" />
                     </FormGroup>
                 </div>
 
