@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 
 import Card from '../../components/Card';
 import FormGroup from '../../components/FormGroup';
@@ -6,6 +7,12 @@ import MenuOption from '../../components/MenuOption';
 import { monthsOptionList, launchTypesOptionList } from '../../service/launch/LaunchService';
 
 function RegisterLaunch() {
+    const [description, setDescription] = useState();
+    const [year, setYear] = useState();
+    const [month, setMonth] = useState();
+    const [value, setValue] = useState();
+    const [type, setType] = useState();
+
     return (
         <Card title="Register Launch">
             <div className="row col-md-13">
