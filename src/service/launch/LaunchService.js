@@ -35,6 +35,10 @@ class LaunchService extends ApiService {
     deleteLaunch(id) {
         return this.delete(`/${id}`);
     }
+
+    registerLaunch(launch) {
+        return this.post('', launch);
+    }
 }
 
 export default LaunchService;
