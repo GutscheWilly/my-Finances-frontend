@@ -5,13 +5,43 @@ import Card from '../../components/Card';
 import FormGroup from '../../components/FormGroup';
 import MenuOption from '../../components/MenuOption';
 import { monthsOptionList, launchTypesOptionList } from '../../service/launch/LaunchService';
+import { showSuccessMessage, showWarningMessage } from '../../components/Toastr';
+import NavigateService from '../../service/navigate/NavigateService';
+
+import LaunchService from '../../service/launch/LaunchService';
+import LocalStorageService from '../../service/local-storage/LocalStorageService';
 
 function RegisterLaunch() {
+    const userId = LocalStorageService.getItem('logged_user').id;
+
     const [description, setDescription] = useState();
     const [year, setYear] = useState();
     const [month, setMonth] = useState();
     const [value, setValue] = useState();
     const [type, setType] = useState();
+
+    const launchService = new LaunchService();
+    const navigateService = NavigateService();
+
+    const registerLaunch = async () => {
+        const launch = {
+            userId: userId,
+            description: description,
+            year: year,
+            month: month,
+            value: value,
+            type: type
+        };
+
+        await launchService.registerLaunch(launch)
+            .then( () => {
+                showSuccessMessage('Launch registered successful!');
+            })
+            .catch( error => {
+                const errorMessage = error.response.data;
+                showWarningMessage(errorMessage);
+            });
+    };
 
     return (
         <Card title="Register Launch">
@@ -56,7 +86,7 @@ function RegisterLaunch() {
             </div>
 
             <div className="group d-flex justify-content-center mt-4">
-                <button type="button" className="btn btn-success">Register</button>
+                <button onClick={registerLaunch} type="button" className="btn btn-success">Register</button>
                 <button type="button" className="btn btn-danger">Cancel</button>
             </div>
         </Card>
