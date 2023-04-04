@@ -35,6 +35,7 @@ function RegisterLaunch() {
 
         await launchService.registerLaunch(launch)
             .then( () => {
+                navigateService.navigateToSearchLaunches();
                 showSuccessMessage('Launch registered successful!');
             })
             .catch( error => {

@@ -15,6 +15,10 @@ function NavigateService() {
         return navigate('/home');
     };
 
+    const navigateToSearchLaunches = () => {
+        return navigate('/launches');
+    };
+
     const navigateToRegisterLaunch = () => {
         return navigate('/register-launch');
     };
@@ -23,6 +27,7 @@ function NavigateService() {
         navigateToLogin,
         navigateToRegisterUser,
         navigateToHome,
+        navigateToSearchLaunches,
         navigateToRegisterLaunch
     };
 }
