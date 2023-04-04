@@ -5,6 +5,7 @@ import Login from '../pages/Login';
 import RegisterUser from '../pages/RegisterUser';
 import Home from '../pages/Home';
 import Launch from '../pages/launch/Launch';
+import RegisterLaunch from '../pages/launch/RegisterLaunch';
 
 function RoutesApp() {
     return (
@@ -13,7 +14,8 @@ function RoutesApp() {
                 <Route path="/login" element={ <Login /> } />
                 <Route path="/register-user" element={ <RegisterUser /> } />
                 <Route path="/home" element={ <Home /> } />
-                <Route path="/launch" element={ <Launch /> } />
+                <Route path="/launches" element={ <Launch /> } />
+                <Route path="/register-launch" element={ <RegisterLaunch /> } />
             </Routes>
         </BrowserRouter>
     );

@@ -15,10 +15,20 @@ function NavigateService() {
         return navigate('/home');
     };
 
+    const navigateToSearchLaunches = () => {
+        return navigate('/launches');
+    };
+
+    const navigateToRegisterLaunch = () => {
+        return navigate('/register-launch');
+    };
+
     return {
         navigateToLogin,
         navigateToRegisterUser,
-        navigateToHome
+        navigateToHome,
+        navigateToSearchLaunches,
+        navigateToRegisterLaunch
     };
 }
 

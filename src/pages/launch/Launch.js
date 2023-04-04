@@ -13,6 +13,7 @@ import { Button } from 'primereact/button'
 import LaunchService from '../../service/launch/LaunchService';
 import { monthsOptionList, launchTypesOptionList } from '../../service/launch/LaunchService';
 import LocalStorageService from '../../service/local-storage/LocalStorageService';
+import NavigateService from '../../service/navigate/NavigateService';
 
 function Launch() {
     const userId = LocalStorageService.getItem('logged_user').id;
@@ -27,6 +28,7 @@ function Launch() {
     const [launchToBeDelete, setLaunchToBeDelete] = useState({});
 
     const launchService = new LaunchService();
+    const navigateService = NavigateService();
 
     const searchLaunches = async () => {  
         const filter = {
@@ -132,7 +134,7 @@ function Launch() {
 
                         <div className="mt-4">
                             <button onClick={searchLaunches} type="button" className="btn btn-outline-success">Search</button>
-                            <button type="button" className="btn btn-outline-light">Add Launch</button>
+                            <button onClick={navigateService.navigateToRegisterLaunch} type="button" className="btn btn-outline-light">Add Launch</button>
                         </div>
                     </div>
                 </div>
