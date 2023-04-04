@@ -87,7 +87,7 @@ function RegisterLaunch() {
 
             <div className="group d-flex justify-content-center mt-4">
                 <button onClick={registerLaunch} type="button" className="btn btn-success">Register</button>
-                <button type="button" className="btn btn-danger">Cancel</button>
+                <button onClick={navigateService.navigateToHome} type="button" className="btn btn-danger">Cancel</button>
             </div>
         </Card>
     );
