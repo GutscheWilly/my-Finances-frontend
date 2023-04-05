@@ -32,6 +32,15 @@ class LaunchService extends ApiService {
         return this.get('', filter);
     }
 
+    searchLaunchById(launchId, userId) {
+        const filter = {
+            launchId: launchId,
+            userId: userId
+        };
+
+        return this.searchLaunches(filter);
+    }
+
     deleteLaunch(id) {
         return this.delete(`/${id}`);
     }
