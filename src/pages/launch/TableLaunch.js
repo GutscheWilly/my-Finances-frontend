@@ -4,7 +4,8 @@ import currencyFormatter from 'currency-formatter';
 function TableLaunch(props) {
     const { 
         launchList,
-        deleteAction
+        deleteAction,
+        editAction
     } = props;
 
     const launches = launchList.map(launch => {
@@ -25,7 +26,7 @@ function TableLaunch(props) {
                 <td>{month}</td>
                 <td>{status}</td>
                 <td>
-                    <button type="button" className="btn btn-dark">Edit</button>
+                    <button type="button" className="btn btn-dark" onClick={ () => editAction(id) }>Edit</button>
                     <button type="button" className="btn btn-danger" onClick={ () => deleteAction(launch) }>Delete</button>
                 </td>
             </tr>
