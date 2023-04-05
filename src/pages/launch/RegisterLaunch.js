@@ -6,7 +6,7 @@ import Card from '../../components/Card';
 import FormGroup from '../../components/FormGroup';
 import MenuOption from '../../components/MenuOption';
 import { monthsOptionList, launchTypesOptionList } from '../../service/launch/LaunchService';
-import { showSuccessMessage, showWarningMessage } from '../../components/Toastr';
+import { showErrorMessage, showSuccessMessage, showWarningMessage } from '../../components/Toastr';
 import NavigateService from '../../service/navigate/NavigateService';
 
 import LaunchService from '../../service/launch/LaunchService';
@@ -27,8 +27,8 @@ function RegisterLaunch() {
     const launchService = new LaunchService();
     const navigateService = NavigateService();
 
-    const registerLaunch = async () => {
-        const launch = {
+    const currentLaunchDataState = () => {
+        return {
             userId: userId,
             description: description,
             year: year,
@@ -36,6 +36,10 @@ function RegisterLaunch() {
             value: value,
             type: type
         };
+    };
+
+    const registerLaunch = async () => {
+        const launch = currentLaunchDataState();
 
         await launchService.registerLaunch(launch)
             .then( () => {
@@ -56,8 +60,31 @@ function RegisterLaunch() {
                 .then( response => {
                     const launch = response.data[0];
                     setLaunchToBeUpdate(launch);
+                    setDescription(launch.description);
+                    setYear(launch.year);
+                    setMonth(launch.month);
+                    setValue(launch.value);
+                    setType(launch.type);
                 });
         }
+    };
+
+    const updateLaunch = async () => {
+        const launchId = urlParams.id;
+
+        const updatedLaunchData = currentLaunchDataState();
+        updatedLaunchData['status'] = launchToBeUpdate.status;
+
+        await launchService.updateLaunch(launchId, updatedLaunchData)
+            .then( () => {
+                navigateService.navigateToSearchLaunches();
+                showSuccessMessage('Launch updated successful!');
+            })
+            .catch( error => {
+                console.log(error);
+                const errorMessage = error.response.data;
+                showErrorMessage(errorMessage);
+            })
     };
 
     const cancelRegister = () => {
@@ -113,6 +140,7 @@ function RegisterLaunch() {
 
             <div className="group d-flex justify-content-center mt-4">
                 <button onClick={registerLaunch} type="button" className="btn btn-success">Register</button>
+                <button onClick={updateLaunch} type="button" className="btn btn-dark">Update</button>
                 <button onClick={cancelRegister} type="button" className="btn btn-danger">Cancel</button>
             </div>
         </Card>
