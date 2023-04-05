@@ -48,6 +48,10 @@ class LaunchService extends ApiService {
     registerLaunch(launch) {
         return this.post('', launch);
     }
+
+    updateLaunch(id, newDatas) {
+        return this.put(`/${id}`, newDatas);
+    }
 }
 
 export default LaunchService;
