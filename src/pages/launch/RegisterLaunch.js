@@ -15,6 +15,7 @@ import LocalStorageService from '../../service/local-storage/LocalStorageService
 function RegisterLaunch() {
     const userId = LocalStorageService.getItem('logged_user').id;
 
+    const urlParams = useParams();
     const [launchToBeUpdate, setLaunchToBeUpdate] = useState({});
 
     const [description, setDescription] = useState();
@@ -47,8 +48,25 @@ function RegisterLaunch() {
             });
     };
 
-    useEffect( () => {
+    const requestLaunchToBeUpdate = async () => {
+        const launchId = urlParams.id;
         
+        if (launchId) {
+            await launchService.searchLaunchById(launchId, userId)
+                .then( response => {
+                    const launch = response.data[0];
+                    setLaunchToBeUpdate(launch);
+                });
+        }
+    };
+
+    const cancelRegister = () => {
+        navigateService.navigateToSearchLaunches();
+        setLaunchToBeUpdate({});
+    };
+
+    useEffect( () => {
+        requestLaunchToBeUpdate();
     }, []);
 
     return (
@@ -95,7 +113,7 @@ function RegisterLaunch() {
 
             <div className="group d-flex justify-content-center mt-4">
                 <button onClick={registerLaunch} type="button" className="btn btn-success">Register</button>
-                <button onClick={navigateService.navigateToHome} type="button" className="btn btn-danger">Cancel</button>
+                <button onClick={cancelRegister} type="button" className="btn btn-danger">Cancel</button>
             </div>
         </Card>
     );
