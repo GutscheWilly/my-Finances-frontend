@@ -16,6 +16,7 @@ function RoutesApp() {
                 <Route path="/home" element={ <Home /> } />
                 <Route path="/launches" element={ <Launch /> } />
                 <Route path="/register-launch" element={ <RegisterLaunch /> } />
+                <Route path="/register-launch/:id" element={ <RegisterLaunch /> } />
             </Routes>
         </BrowserRouter>
     );
