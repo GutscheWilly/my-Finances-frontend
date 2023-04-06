@@ -23,6 +23,7 @@ function RegisterLaunch() {
     const [month, setMonth] = useState();
     const [value, setValue] = useState();
     const [type, setType] = useState();
+    const [status, setStatus] = useState();
 
     const launchService = new LaunchService();
     const navigateService = NavigateService();
@@ -67,13 +68,14 @@ function RegisterLaunch() {
                     setMonth(launch.month);
                     setValue(launch.value);
                     setType(launch.type);
+                    setStatus(launch.status);
                 });
         }
     };
 
     const updateLaunch = async () => {
         const updatedLaunchData = currentLaunchDataState();
-        updatedLaunchData['status'] = launchToBeUpdate.status;
+        updatedLaunchData['status'] = status;
 
         await launchService.updateLaunch(launchIdParam, updatedLaunchData)
             .then( () => {
@@ -81,7 +83,6 @@ function RegisterLaunch() {
                 showSuccessMessage('Launch updated successful!');
             })
             .catch( error => {
-                console.log(error);
                 const errorMessage = error.response.data;
                 showErrorMessage(errorMessage);
             })
@@ -149,7 +150,7 @@ function RegisterLaunch() {
 
                 <div className="col-md-4">
                     <FormGroup htmlFor="inputStatus" label="Status:">
-                        <input id="inputStatus" type="text" className="form-control" value={launchToBeUpdate.status} disabled />
+                        <input onChange={ event => setStatus(event.target.value) } id="inputStatus" type="text" className="form-control" value={status} disabled />
                     </FormGroup>
                 </div>
             </div>
