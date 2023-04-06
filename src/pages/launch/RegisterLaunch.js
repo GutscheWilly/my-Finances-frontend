@@ -116,20 +116,20 @@ function RegisterLaunch() {
         <Card title={ getTitle() }>
             <div className="row col-md-13">
                 <FormGroup htmlFor="inputDescription" label="* Description:">
-                    <input onChange={ event => setDescription(event.target.value) } id="inputDescription" type="text" className="form-control" placeholder={launchToBeUpdate.description} />
+                    <input onChange={ event => setDescription(event.target.value) } id="inputDescription" type="text" className="form-control" value={description} />
                 </FormGroup>
             </div>
 
             <div className="row">
                 <div className="col-md-6">
                     <FormGroup htmlFor="inputYear" label="* Year:">
-                        <input onChange={ event => setYear(event.target.value) } id="inputYear" type="text" className="form-control" placeholder={launchToBeUpdate.year} />
+                        <input onChange={ event => setYear(event.target.value) } id="inputYear" type="text" className="form-control" value={year} />
                     </FormGroup>
                 </div>
 
                 <div className="col-md-6">
                     <FormGroup htmlFor="inputMonth" label="* Month:">
-                        <MenuOption onChange={ event => setMonth(event.target.value) } id="inputMonth" options={monthsOptionList} className="form-control" placeholder={launchToBeUpdate.month} />
+                        <MenuOption onChange={ event => setMonth(event.target.value) } id="inputMonth" options={monthsOptionList} className="form-control" value={month} />
                     </FormGroup>
                 </div>
             </div>
@@ -137,19 +137,19 @@ function RegisterLaunch() {
             <div className="row">
                 <div className="col-md-4">
                     <FormGroup htmlFor="inputValue" label="* Value:">
-                        <input onChange={ event => setValue(event.target.value) } id="inputValue" type="text" className="form-control" placeholder={launchToBeUpdate.value} />
+                        <input onChange={ event => setValue(event.target.value) } id="inputValue" type="text" className="form-control" value={value} />
                     </FormGroup>
                 </div>
 
                 <div className="col-md-4">
                     <FormGroup htmlFor="inputType" label="* Type:">
-                        <MenuOption onChange={ event => setType(event.target.value) } id="inputType" options={launchTypesOptionList} className="form-control" placeholder={launchToBeUpdate.type} />
+                        <MenuOption onChange={ event => setType(event.target.value) } id="inputType" options={launchTypesOptionList} className="form-control" value={type} />
                     </FormGroup>
                 </div>
 
                 <div className="col-md-4">
                     <FormGroup htmlFor="inputStatus" label="Status:">
-                        <input id="inputStatus" type="text" className="form-control" placeholder={launchToBeUpdate.status} disabled />
+                        <input id="inputStatus" type="text" className="form-control" value={launchToBeUpdate.status} disabled />
                     </FormGroup>
                 </div>
             </div>
