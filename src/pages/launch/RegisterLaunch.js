@@ -15,7 +15,7 @@ import LocalStorageService from '../../service/local-storage/LocalStorageService
 function RegisterLaunch() {
     const userId = LocalStorageService.getItem('logged_user').id;
 
-    const urlParams = useParams();
+    const launchIdParam = useParams().id;
     const [launchToBeUpdate, setLaunchToBeUpdate] = useState({});
 
     const [description, setDescription] = useState();
@@ -38,6 +38,10 @@ function RegisterLaunch() {
         };
     };
 
+    const isThereLaunchToBeUpdate = () => {
+        return launchIdParam !== undefined;
+    };
+
     const registerLaunch = async () => {
         const launch = currentLaunchDataState();
 
@@ -53,10 +57,8 @@ function RegisterLaunch() {
     };
 
     const requestLaunchToBeUpdate = async () => {
-        const launchId = urlParams.id;
-        
-        if (launchId) {
-            await launchService.searchLaunchById(launchId, userId)
+        if (isThereLaunchToBeUpdate()) {
+            await launchService.searchLaunchById(launchIdParam, userId)
                 .then( response => {
                     const launch = response.data[0];
                     setLaunchToBeUpdate(launch);
@@ -70,12 +72,10 @@ function RegisterLaunch() {
     };
 
     const updateLaunch = async () => {
-        const launchId = urlParams.id;
-
         const updatedLaunchData = currentLaunchDataState();
         updatedLaunchData['status'] = launchToBeUpdate.status;
 
-        await launchService.updateLaunch(launchId, updatedLaunchData)
+        await launchService.updateLaunch(launchIdParam, updatedLaunchData)
             .then( () => {
                 navigateService.navigateToSearchLaunches();
                 showSuccessMessage('Launch updated successful!');
@@ -92,12 +92,28 @@ function RegisterLaunch() {
         setLaunchToBeUpdate({});
     };
 
+    const getTitle = () => {
+        if (isThereLaunchToBeUpdate()) {
+            return 'Edit Launch';
+        }
+
+        return 'Register Launch';
+    };
+
+    const mainButton = () => {
+        if (isThereLaunchToBeUpdate()) {
+            return ( <button onClick={updateLaunch} type="button" className="btn btn-dark">Update</button> );
+        }
+
+        return ( <button onClick={registerLaunch} type="button" className="btn btn-success">Register</button> );
+    };
+
     useEffect( () => {
         requestLaunchToBeUpdate();
     }, []);
 
     return (
-        <Card title="Register Launch">
+        <Card title={ getTitle() }>
             <div className="row col-md-13">
                 <FormGroup htmlFor="inputDescription" label="* Description:">
                     <input onChange={ event => setDescription(event.target.value) } id="inputDescription" type="text" className="form-control" placeholder={launchToBeUpdate.description} />
@@ -139,8 +155,7 @@ function RegisterLaunch() {
             </div>
 
             <div className="group d-flex justify-content-center mt-4">
-                <button onClick={registerLaunch} type="button" className="btn btn-success">Register</button>
-                <button onClick={updateLaunch} type="button" className="btn btn-dark">Update</button>
+                { mainButton() }
                 <button onClick={cancelRegister} type="button" className="btn btn-danger">Cancel</button>
             </div>
         </Card>
