@@ -5,7 +5,8 @@ function TableLaunch(props) {
     const { 
         launchList,
         deleteAction,
-        editAction
+        editAction,
+        updateStatusAction
     } = props;
 
     const launches = launchList.map(launch => {
@@ -28,6 +29,7 @@ function TableLaunch(props) {
                 <td>
                     <button type="button" className="btn btn-dark" onClick={ () => editAction(id) }>Edit</button>
                     <button type="button" className="btn btn-danger" onClick={ () => deleteAction(launch) }>Delete</button>
+                    <button type="button" className="btn btn-success" onClick={ () => updateStatusAction(id, 'CONFIRMED') }></button>
                 </td>
             </tr>
         );
