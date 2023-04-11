@@ -27,9 +27,9 @@ function TableLaunch(props) {
                 <td>{month}</td>
                 <td>{status}</td>
                 <td>
+                    <button type="button" className="btn btn-success" onClick={ () => updateStatusAction(id, 'CONFIRMED') }><i className="pi pi-check"></i></button>
                     <button type="button" className="btn btn-dark" onClick={ () => editAction(id) }>Edit</button>
                     <button type="button" className="btn btn-danger" onClick={ () => deleteAction(launch) }>Delete</button>
-                    <button type="button" className="btn btn-success" onClick={ () => updateStatusAction(id, 'CONFIRMED') }></button>
                 </td>
             </tr>
         );
