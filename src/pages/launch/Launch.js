@@ -95,7 +95,7 @@ function Launch() {
     const updateStatus = async (id, status) => {
         await launchService.updateLaunchStatus(id, status) 
             .then( () => {
-                showSuccessMessage('Launch confirmed sucessful!');
+                showSuccessMessage('Launch status updated!');
                 searchLaunches();
             })
             .catch( error => {
