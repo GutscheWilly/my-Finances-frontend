@@ -16,7 +16,6 @@ function RegisterLaunch() {
     const userId = LocalStorageService.getItem('logged_user').id;
 
     const launchIdParam = useParams().id;
-    const [launchToBeUpdate, setLaunchToBeUpdate] = useState({});
 
     const [description, setDescription] = useState();
     const [year, setYear] = useState();
@@ -62,7 +61,7 @@ function RegisterLaunch() {
             await launchService.searchLaunchById(launchIdParam, userId)
                 .then( response => {
                     const launch = response.data[0];
-                    setLaunchToBeUpdate(launch);
+                    
                     setDescription(launch.description);
                     setYear(launch.year);
                     setMonth(launch.month);
@@ -77,6 +76,11 @@ function RegisterLaunch() {
         const updatedLaunchData = currentLaunchDataState();
         updatedLaunchData['status'] = status;
 
+        if (type === '') {
+            showErrorMessage('Enter a valid type!');
+            return;
+        }
+
         await launchService.updateLaunch(launchIdParam, updatedLaunchData)
             .then( () => {
                 navigateService.navigateToSearchLaunches();
@@ -90,12 +94,11 @@ function RegisterLaunch() {
 
     const cancelRegister = () => {
         navigateService.navigateToSearchLaunches();
-        setLaunchToBeUpdate({});
     };
 
     const getTitle = () => {
         if (isThereLaunchToBeUpdate()) {
-            return 'Edit Launch';
+            return 'Update Launch';
         }
 
         return 'Register Launch';
