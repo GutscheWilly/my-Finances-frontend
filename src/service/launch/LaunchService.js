@@ -52,6 +52,10 @@ class LaunchService extends ApiService {
     updateLaunch(id, newDatas) {
         return this.put(`/${id}`, newDatas);
     }
+
+    updateLaunchStatus(id, status) {
+        return this.put(`/${id}/update-status`, { status: status });
+    }
 }
 
 export default LaunchService;
