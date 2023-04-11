@@ -88,6 +88,10 @@ function Launch() {
         </div>
     );
 
+    const editLaunch = (id) => {
+        navigateService.navigateToRegisterLaunchWithEdit(id);
+    };
+
     useEffect(() => {
         searchLaunches();
     }, []);
@@ -143,7 +147,7 @@ function Launch() {
             <div className="row">
                 <div className="col-md-12">
                     <div className="bs-component mt-4">  
-                        <TableLaunch launchList={launchList} deleteAction={openConfirmDialog} />
+                        <TableLaunch launchList={launchList} deleteAction={openConfirmDialog} editAction={editLaunch} />
                     </div>
                 </div>
             </div>

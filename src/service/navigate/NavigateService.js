@@ -23,12 +23,17 @@ function NavigateService() {
         return navigate('/register-launch');
     };
 
+    const navigateToRegisterLaunchWithEdit = (id) => {
+        return navigate(`/register-launch/${id}`);
+    };
+
     return {
         navigateToLogin,
         navigateToRegisterUser,
         navigateToHome,
         navigateToSearchLaunches,
-        navigateToRegisterLaunch
+        navigateToRegisterLaunch,
+        navigateToRegisterLaunchWithEdit
     };
 }
 
