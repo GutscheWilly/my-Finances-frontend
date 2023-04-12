@@ -92,6 +92,18 @@ function Launch() {
         navigateService.navigateToRegisterLaunchWithEdit(id);
     };
 
+    const updateStatus = async (id, status) => {
+        await launchService.updateLaunchStatus(id, status) 
+            .then( () => {
+                showSuccessMessage('Launch status updated!');
+                searchLaunches();
+            })
+            .catch( error => {
+                const errorMessage = error.response.data;
+                showErrorMessage(errorMessage);
+            });
+    };
+
     useEffect(() => {
         searchLaunches();
     }, []);
@@ -147,7 +159,12 @@ function Launch() {
             <div className="row">
                 <div className="col-md-12">
                     <div className="bs-component mt-4">  
-                        <TableLaunch launchList={launchList} deleteAction={openConfirmDialog} editAction={editLaunch} />
+                        <TableLaunch 
+                            launchList={launchList} 
+                            deleteAction={openConfirmDialog} 
+                            editAction={editLaunch}
+                            updateStatusAction={updateStatus}
+                        />
                     </div>
                 </div>
             </div>
