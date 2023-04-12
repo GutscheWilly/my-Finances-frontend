@@ -19,19 +19,8 @@ function TableLaunch(props) {
             status
         } = launch;
 
-        const buttonsToSetStatus = () => {
-            function isStatusPendent() {
-                return status === 'PENDENT';
-            }
-
-            if (isStatusPendent()) {
-                return (
-                    <>
-                        <button title="Confirm" type="button" className="btn btn-success" onClick={ () => updateStatusAction(id, 'CONFIRMED') }><i className="pi pi-check-circle"></i></button>
-                        <button title="Cancel" type="button" className="btn btn-danger" onClick={ () => updateStatusAction(id, 'CANCELED') }><i className="pi pi-times-circle"></i></button>
-                    </>
-                );
-            }
+        const shouldDisabledButtonToSetStatus = () => {
+            return status !== 'PENDENT';
         }
 
         return (
@@ -42,9 +31,10 @@ function TableLaunch(props) {
                 <td>{month}</td>
                 <td>{status}</td>
                 <td>
+                    <button title="Confirm" disabled={shouldDisabledButtonToSetStatus()} type="button" className="btn btn-success" onClick={ () => updateStatusAction(id, 'CONFIRMED') }><i className="pi pi-check-circle"></i></button>
+                    <button title="Cancel" disabled={shouldDisabledButtonToSetStatus()} type="button" className="btn btn-danger" onClick={ () => updateStatusAction(id, 'CANCELED') }><i className="pi pi-times-circle"></i></button>
                     <button title="Edit" type="button" className="btn btn-dark" onClick={ () => editAction(id) }><i className="pi pi-pencil"></i></button>
                     <button title="Delete" type="button" className="btn btn-warning" onClick={ () => deleteAction(launch) }><i className="pi pi-trash"></i></button>
-                    { buttonsToSetStatus() }
                 </td>
             </tr>
         );
