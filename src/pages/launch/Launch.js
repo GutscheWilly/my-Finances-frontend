@@ -149,8 +149,8 @@ function Launch() {
                         </FormGroup>
 
                         <div className="mt-4">
-                            <button onClick={searchLaunches} type="button" className="btn btn-outline-success">Search</button>
-                            <button onClick={navigateService.navigateToRegisterLaunch} type="button" className="btn btn-outline-light">Add Launch</button>
+                            <button title="Search" onClick={searchLaunches} type="button" className="btn btn-outline-success"><i class="pi pi-search"></i></button>
+                            <button title="Add Launch" onClick={navigateService.navigateToRegisterLaunch} type="button" className="btn btn-outline-light"><i class="pi pi-plus"></i></button>
                         </div>
                     </div>
                 </div>
