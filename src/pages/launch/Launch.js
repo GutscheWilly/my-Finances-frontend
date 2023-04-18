@@ -6,6 +6,7 @@ import FormGroup from '../../components/FormGroup';
 import MenuOption from '../../components/MenuOption';
 import TableLaunch from './TableLaunch';
 import { showWarningMessage, showErrorMessage, showSuccessMessage } from '../../components/Toastr';
+import icons from '../../components/Icons';
 
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button'
@@ -113,7 +114,7 @@ function Launch() {
             <div className="row">
                 <div className="col-md-6">
                     <div className="bs-component">
-                        <FormGroup label="Year:" htmlFor="inputYear">
+                        <FormGroup label="Year:" htmlFor="inputYear" icon={icons.year}>
                             <input
                                 type="text"
                                 className="form-control"
@@ -122,7 +123,7 @@ function Launch() {
                                 onChange={ event => setYear(event.target.value) }
                             />
                         </FormGroup>
-                        <FormGroup label="Description:" htmlFor="inputDescription">
+                        <FormGroup label="Description:" htmlFor="inputDescription" icon={icons.description}>
                             <input
                                 type="text"
                                 className="form-control"
@@ -131,7 +132,7 @@ function Launch() {
                                 onChange={ event => setDescription(event.target.value) }
                             />
                         </FormGroup>
-                        <FormGroup label="Month:" htmlFor="inputMonth">
+                        <FormGroup label="Month:" htmlFor="inputMonth" icon={icons.month}>
                             <MenuOption
                                 id="inputMonth"
                                 className="form-control" 
@@ -139,7 +140,7 @@ function Launch() {
                                 onChange={ event => setMonth(event.target.value) }
                             />
                         </FormGroup>
-                        <FormGroup label="Type:" htmlFor="inputType">
+                        <FormGroup label="Type:" htmlFor="inputType" icon={icons.type}>
                             <MenuOption 
                                 id="inputType"
                                 className="form-control" 
@@ -149,8 +150,8 @@ function Launch() {
                         </FormGroup>
 
                         <div className="mt-4">
-                            <button onClick={searchLaunches} type="button" className="btn btn-outline-success">Search</button>
-                            <button onClick={navigateService.navigateToRegisterLaunch} type="button" className="btn btn-outline-light">Add Launch</button>
+                            <button title="Search" onClick={searchLaunches} type="button" className="btn btn-outline-success">{icons.search} Search</button>
+                            <button title="Add Launch" onClick={navigateService.navigateToRegisterLaunch} type="button" className="btn btn-outline-light">{icons.add} New Launch</button>
                         </div>
                     </div>
                 </div>

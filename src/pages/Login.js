@@ -62,9 +62,9 @@ function Login() {
                                                 onChange={ ({ target: { value } }) => setPassword(value) }
                                             />
                                         </FormGroup>
-                                        <div className="btn-group-vertical" style={ {position: 'relative', left: '155px'} }>
+                                        <div className="group d-flex justify-content-center mt-4">
                                             <button onClick={signIn} className="btn btn-success mt-3">Sign in</button>
-                                            <button onClick={navigateService.navigateToRegisterUser} className="btn btn-warning mt-3">Register a new account</button>
+                                            <button onClick={navigateService.navigateToRegisterUser} className="btn btn-warning mt-3">New account</button>
                                         </div>
                                     </fieldset>
                                 </div>

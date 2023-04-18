@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
 import { showSuccessMessage, showErrorMessage, showWarningMessage } from '../components/Toastr';
+import icons from '../components/Icons';
 
 import UserService from '../service/user/UserService';
 import RegisterUserService from '../service/user/RegisterUserService';
@@ -51,8 +52,8 @@ function RegisterUser() {
         <Card title="Register User">
             <div className="row">
                 <div className="col-lg-12">
-                    <div className="bs-component col-lg-6" style={ {position: 'relative', left: '270px'} }>
-                        <FormGroup label="* Name:" htmlFor="inputName">
+                    <div className="bs-component">
+                        <FormGroup label="Name:" htmlFor="inputName" icon={icons.user}>
                             <input
                                 type="text"
                                 className="form-control"
@@ -61,7 +62,7 @@ function RegisterUser() {
                                 onChange={ (event) => setName(event.target.value) }
                             />
                         </FormGroup>
-                        <FormGroup label="* Email:" htmlFor="inputEmail">
+                        <FormGroup label="Email:" htmlFor="inputEmail" icon={icons.email}>
                             <input
                                 type="email"
                                 className="form-control"
@@ -70,7 +71,7 @@ function RegisterUser() {
                                 onChange={ (event) => setEmail(event.target.value) }
                             />
                         </FormGroup>
-                        <FormGroup label="* Password:" htmlFor="inputPassword">
+                        <FormGroup label="Password:" htmlFor="inputPassword" icon={icons.password}>
                             <input
                                 type="password"
                                 className="form-control"
@@ -79,7 +80,7 @@ function RegisterUser() {
                                 onChange={ (event) => setPassword(event.target.value) }
                             />
                         </FormGroup>
-                        <FormGroup label="* Confirm Password:" htmlFor="inputConfirmPassword">
+                        <FormGroup label="Confirm Password:" htmlFor="inputConfirmPassword" icon={icons.confirmPassword}>
                             <input
                                 type="password"
                                 className="form-control"
@@ -89,9 +90,9 @@ function RegisterUser() {
                             />
                         </FormGroup>
                     </div>
-                    <div className="btn-group mt-5 d-grid gap-3 col-lg-2" style={ {position: 'relative', left: '450px'} }>
-                        <button onClick={handleWithRegister} className="btn btn-success">Register</button>
-                        <button onClick={navigateService.navigateToLogin} className="btn btn-danger">Cancel</button>
+                    <div className="group d-flex justify-content-center mt-4">
+                        <button title="Register" onClick={handleWithRegister} className="btn btn-success">{icons.register} Register</button>
+                        <button title="Cancel" onClick={navigateService.navigateToLogin} className="btn btn-danger">{icons.cancel} Cancel</button>
                     </div>
                 </div>
             </div>
