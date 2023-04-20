@@ -50,8 +50,8 @@ function RegisterUser() {
 
     return (
         <Card title="Register User">
-            <div className="row">
-                <div className="col-lg-12">
+            <div className="row group justify-content-center">
+                <div className="col-lg-6">
                     <div className="bs-component">
                         <FormGroup label="Name:" htmlFor="inputName" icon={icons.user}>
                             <input
@@ -90,7 +90,7 @@ function RegisterUser() {
                             />
                         </FormGroup>
                     </div>
-                    <div className="group d-flex justify-content-center mt-4">
+                    <div className="group d-flex justify-content-center mt-5">
                         <button title="Register" onClick={handleWithRegister} className="btn btn-success">{icons.register} Register</button>
                         <button title="Cancel" onClick={navigateService.navigateToLogin} className="btn btn-danger">{icons.cancel} Cancel</button>
                     </div>
