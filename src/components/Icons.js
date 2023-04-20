@@ -1,5 +1,6 @@
 const icons = {
     user: <i class="pi pi-user"></i>,
+    userPlus: <i class="pi pi-user-plus"></i>,
     email: <i class="pi pi-envelope"></i>,
     password: <i class="pi pi-lock"></i>,
     confirmPassword: <i class="pi pi-lock-open"></i>,
@@ -12,7 +13,7 @@ const icons = {
     description: <i class="pi pi-comment"></i>,
     type: <i class="pi pi-wallet"></i>,
     value: <i class="pi pi-dollar"></i>,
-    status: <i class="pi pi-flag"></i>
+    signIn: <i class="pi pi-sign-in"></i>
 };
 
 export default icons;

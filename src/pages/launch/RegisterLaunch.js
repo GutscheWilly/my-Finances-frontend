@@ -107,10 +107,10 @@ function RegisterLaunch() {
 
     const mainButton = () => {
         if (isThereLaunchToBeUpdate()) {
-            return ( <button onClick={updateLaunch} type="button" className="btn btn-dark"><i class="pi pi-save"></i> Update</button> );
+            return ( <button title="Update Launch" onClick={updateLaunch} type="button" className="btn btn-dark"><i class="pi pi-save"></i> Update</button> );
         }
 
-        return ( <button onClick={registerLaunch} type="button" className="btn btn-success"><i class="pi pi-save"></i> Register</button> );
+        return ( <button title="Register Launch" onClick={registerLaunch} type="button" className="btn btn-success"><i class="pi pi-save"></i> Register</button> );
     };
 
     useEffect( () => {
@@ -161,7 +161,7 @@ function RegisterLaunch() {
 
             <div className="group d-flex justify-content-center mt-4">
                 { mainButton() }
-                <button onClick={cancelRegister} type="button" className="btn btn-danger"><i class="pi pi-times"></i> Cancel</button>
+                <button title="Cancel" onClick={cancelRegister} type="button" className="btn btn-danger"><i class="pi pi-times"></i> Cancel</button>
             </div>
         </Card>
     );
