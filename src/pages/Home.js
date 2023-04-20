@@ -34,7 +34,7 @@ function Home() {
 
         requestAndSetBalance(id);
         setUserName(name);
-    });
+    }, []);
 
     return (
         <div className="jumbotron">
@@ -47,7 +47,7 @@ function Home() {
 
             <div className="mt-4"> 
                 <button title="Add a new Launch" onClick={navigateService.navigateToRegisterLaunch} className="btn btn-info btn-lg">
-                    {icons.add} Add launch
+                    {icons.add} Add Launch
                 </button>
 
                 <button title="Search by Launches" onClick={navigateService.navigateToSearchLaunches} className="btn btn-success btn-lg">
