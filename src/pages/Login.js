@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
 import { showErrorMessage } from '../components/Toastr';
+import icons from '../components/Icons';
 
 import LocalStorageService from '../service/local-storage/LocalStorageService';
 import UserService from '../service/user/UserService';
@@ -35,15 +36,15 @@ function Login() {
     };
 
     return (
-        <div className="row">
-            <div className="col-md-6" style={ {position: 'relative', left: '300px'} }>
+        <div className="row group d-flex justify-content-center">
+            <div className="col-md-6">
                 <div className="bs-docs-section">
                     <Card title="Login">
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="bs-component">
                                     <fieldset>
-                                        <FormGroup label="* Email:" htmlFor="exampleInputEmail">
+                                        <FormGroup label="Email:" htmlFor="exampleInputEmail" icon={icons.email}>
                                             <input
                                                 type="email"
                                                 className="form-control" 
@@ -53,7 +54,7 @@ function Login() {
                                                 onChange={ ({ target: { value } }) => setEmail(value) } 
                                             />
                                         </FormGroup>
-                                        <FormGroup label="* Password:" htmlFor="exampleInputPassword">
+                                        <FormGroup label="Password:" htmlFor="exampleInputPassword" icon={icons.password}>
                                             <input
                                                 type="password"
                                                 className="form-control"
@@ -62,9 +63,9 @@ function Login() {
                                                 onChange={ ({ target: { value } }) => setPassword(value) }
                                             />
                                         </FormGroup>
-                                        <div className="group d-flex justify-content-center mt-4">
-                                            <button onClick={signIn} className="btn btn-success mt-3">Sign in</button>
-                                            <button onClick={navigateService.navigateToRegisterUser} className="btn btn-warning mt-3">New account</button>
+                                        <div className="group d-flex justify-content-center mt-5">
+                                            <button onClick={signIn} className="btn btn-success">{icons.signIn} Sign in</button>
+                                            <button onClick={navigateService.navigateToRegisterUser} className="btn btn-info">{icons.userPlus} New account</button>
                                         </div>
                                     </fieldset>
                                 </div>
