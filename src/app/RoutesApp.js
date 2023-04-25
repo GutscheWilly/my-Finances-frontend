@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Login from '../pages/Login';
 import RegisterUser from '../pages/RegisterUser';
@@ -7,19 +7,14 @@ import Home from '../pages/Home';
 import Launch from '../pages/launch/Launch';
 import RegisterLaunch from '../pages/launch/RegisterLaunch';
 
-import { Navigate } from 'react-router-dom';
-import LocalStorageService from '../service/local-storage/LocalStorageService';
+import { isUserLogged } from '../service/user/UserService';
 
 function ProtectedRoute({ children }) {
-    const isUserLogged = () => {
-        return LocalStorageService.getItem('logged_user') !== null;
-    };
-
     if (isUserLogged()) {
         return children;
     }
 
-    return <Navigate to="/login" />
+    return <Navigate to="/login" />;
 }
 
 function RoutesApp() {
