@@ -11,8 +11,8 @@ import UserService from '../service/user/UserService';
 import NavigateService from '../service/navigate/NavigateService';
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
     const userService = new UserService();
     const navigateService = NavigateService();
