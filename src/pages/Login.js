@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 import Card from '../components/Card';
@@ -34,6 +34,10 @@ function Login() {
                 showErrorMessage(errorMessage);
             });
     };
+    
+    useEffect( () => {
+        localStorage.clear();
+    }, []);
 
     return (
         <div className="row group d-flex justify-content-center">
