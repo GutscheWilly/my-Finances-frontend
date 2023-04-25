@@ -1,4 +1,9 @@
 import ApiService from '../api/ApiService';
+import LocalStorageService from '../local-storage/LocalStorageService';
+
+export const isUserLogged = () => {
+    return LocalStorageService.getItem('logged_user') !== null;
+};
 
 class UserService extends ApiService {
 
