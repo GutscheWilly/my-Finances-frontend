@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
@@ -47,6 +47,10 @@ function RegisterUser() {
             showWarningMessage(warningMessage);
         }
     };
+
+    useEffect( () => {
+        localStorage.clear();
+    }, []);
 
     return (
         <Card title="Register User">

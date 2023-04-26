@@ -1,7 +1,39 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+
 import NavbarItem from './NavbarItem';
+import { isUserLogged } from '../service/user/UserService';
 
 function Navbar() {
+    const [items, setItems] = useState();
+
+    const modifyItemsState = () => {
+        const userLoggedState = (
+            <>
+                <NavbarItem href="/home" label="Home" />
+                <NavbarItem href="/launches" label="Launches" />
+            </>
+        );
+
+        if (isUserLogged()) {
+            setItems(userLoggedState);
+            return;
+        }
+
+        const userNotLoggedState = (
+            <>
+                <NavbarItem href="/login" label="Login" />
+                <NavbarItem href="/register-user" label="Register" />
+            </>
+        );
+
+        setItems(userNotLoggedState);
+    };
+
+    useEffect( () => {
+        modifyItemsState();
+    });
+
     return (
         <div className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
             <div className="container">
@@ -18,10 +50,7 @@ function Navbar() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav">
-                        <NavbarItem href="/home" label="Home" />
-                        <NavbarItem href="/launches" label="Launches" />
-                        <NavbarItem href="/register-user" label="Register" />
-                        <NavbarItem href="/login" label="Login" />
+                        { items }
                     </ul>
                 </div>
             </div>

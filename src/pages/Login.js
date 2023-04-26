@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Card from '../components/Card';
 import FormGroup from '../components/FormGroup';
@@ -11,8 +11,8 @@ import UserService from '../service/user/UserService';
 import NavigateService from '../service/navigate/NavigateService';
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
     const userService = new UserService();
     const navigateService = NavigateService();
@@ -34,6 +34,10 @@ function Login() {
                 showErrorMessage(errorMessage);
             });
     };
+    
+    useEffect( () => {
+        localStorage.clear();
+    }, []);
 
     return (
         <div className="row group d-flex justify-content-center">
