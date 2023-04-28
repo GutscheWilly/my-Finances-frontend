@@ -1,6 +1,8 @@
 import React from 'react';
 import currencyFormatter from 'currency-formatter';
 
+import icons from '../../components/Icons';
+
 function TableLaunch(props) {
     const { 
         launchList,
@@ -44,12 +46,12 @@ function TableLaunch(props) {
         <table className="table table-hover">
             <thead className="table-secondary">
                 <tr>
-                    <th>Description</th>
-                    <th>Value</th>
-                    <th>Type</th>
-                    <th>Month</th>
-                    <th>Status</th>
-                    <th>Config</th>
+                    <th>{icons.description} Description</th>
+                    <th>{icons.value} Value</th>
+                    <th>{icons.type} Type</th>
+                    <th>{icons.month} Month</th>
+                    <th>{icons.status} Status</th>
+                    <th>{icons.config} Config</th>
                 </tr>
             </thead>
 

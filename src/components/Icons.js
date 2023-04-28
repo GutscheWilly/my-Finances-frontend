@@ -13,7 +13,9 @@ const icons = {
     description: <i class="pi pi-comment"></i>,
     type: <i class="pi pi-wallet"></i>,
     value: <i class="pi pi-dollar"></i>,
-    signIn: <i class="pi pi-sign-in"></i>
+    signIn: <i class="pi pi-sign-in"></i>,
+    status: <i class="pi pi-tag"></i>,
+    config: <i class="pi pi-cog"></i>
 };
 
 export default icons;
