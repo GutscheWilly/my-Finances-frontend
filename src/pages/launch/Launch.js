@@ -110,65 +110,69 @@ function Launch() {
     }, []);
 
     return (
-        <Card title="Search Launch">
-            <div className="row">
-                <div className="col-md-6">
-                    <div className="bs-component">
-                        <FormGroup label="Year:" htmlFor="inputYear" icon={icons.year}>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="inputYear"
-                                placeholder="Enter year"
-                                onChange={ event => setYear(event.target.value) }
-                            />
-                        </FormGroup>
-                        <FormGroup label="Description:" htmlFor="inputDescription" icon={icons.description}>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="inputDescription"
-                                placeholder="Enter description"
-                                onChange={ event => setDescription(event.target.value) }
-                            />
-                        </FormGroup>
-                        <FormGroup label="Month:" htmlFor="inputMonth" icon={icons.month}>
-                            <MenuOption
-                                id="inputMonth"
-                                className="form-control" 
-                                options={monthsOptionList}
-                                onChange={ event => setMonth(event.target.value) }
-                            />
-                        </FormGroup>
-                        <FormGroup label="Type:" htmlFor="inputType" icon={icons.type}>
-                            <MenuOption 
-                                id="inputType"
-                                className="form-control" 
-                                options={launchTypesOptionList} 
-                                onChange={ event => setType(event.target.value) }
-                            />
-                        </FormGroup>
+        <>
+            <Card title="Search">
+                <div className="row group d-flex justify-content-center">
+                    <div className="col-md-6">
+                        <div className="bs-component">
+                            <FormGroup label="Year:" htmlFor="inputYear" icon={icons.year}>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="inputYear"
+                                    placeholder="Enter year"
+                                    onChange={ event => setYear(event.target.value) }
+                                />
+                            </FormGroup>
+                            <FormGroup label="Description:" htmlFor="inputDescription" icon={icons.description}>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="inputDescription"
+                                    placeholder="Enter description"
+                                    onChange={ event => setDescription(event.target.value) }
+                                />
+                            </FormGroup>
+                            <FormGroup label="Month:" htmlFor="inputMonth" icon={icons.month}>
+                                <MenuOption
+                                    id="inputMonth"
+                                    className="form-control" 
+                                    options={monthsOptionList}
+                                    onChange={ event => setMonth(event.target.value) }
+                                />
+                            </FormGroup>
+                            <FormGroup label="Type:" htmlFor="inputType" icon={icons.type}>
+                                <MenuOption 
+                                    id="inputType"
+                                    className="form-control" 
+                                    options={launchTypesOptionList} 
+                                    onChange={ event => setType(event.target.value) }
+                                />
+                            </FormGroup>
 
-                        <div className="mt-4">
-                            <button title="Search" onClick={searchLaunches} type="button" className="btn btn-outline-success">{icons.search} Search</button>
-                            <button title="Add Launch" onClick={navigateService.navigateToRegisterLaunch} type="button" className="btn btn-outline-light">{icons.add} New Launch</button>
+                            <div className="mt-4 group d-flex justify-content-center">
+                                <button title="Search" onClick={searchLaunches} type="button" className="btn btn-outline-success">{icons.search} Search</button>
+                                <button title="Add Launch" onClick={navigateService.navigateToRegisterLaunch} type="button" className="btn btn-outline-light">{icons.add} Add Launch</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Card>
 
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="bs-component mt-4">  
-                        <TableLaunch 
-                            launchList={launchList} 
-                            deleteAction={openConfirmDialog} 
-                            editAction={editLaunch}
-                            updateStatusAction={updateStatus}
-                        />
+            <Card title={`${launchList.length} found launches!`}>
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="bs-component">  
+                            <TableLaunch 
+                                launchList={launchList} 
+                                deleteAction={openConfirmDialog} 
+                                editAction={editLaunch}
+                                updateStatusAction={updateStatus}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Card>
 
             <Dialog 
                 header="Delete Confirmation" 
@@ -181,7 +185,7 @@ function Launch() {
                     Do you really want to delete this launch?
                 </p>
             </Dialog>
-        </Card>
+        </>
     );
 }
 

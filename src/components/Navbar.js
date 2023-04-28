@@ -12,6 +12,7 @@ function Navbar() {
             <>
                 <NavbarItem href="/home" label="Home" />
                 <NavbarItem href="/launches" label="Launches" />
+                <NavbarItem href="/login" label="Logout" />
             </>
         );
 
